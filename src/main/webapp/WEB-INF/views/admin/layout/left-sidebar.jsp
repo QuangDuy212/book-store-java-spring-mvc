@@ -13,18 +13,18 @@
             <div class="menu-block customscroll">
                 <div class="sidebar-menu">
                     <ul id="accordion-menu">
-                        <li class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle">
+                        <li>
+                            <a href="javascript:;" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-house"></span><span class="mtext">Home</span>
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle">
+                        <li>
+                            <a href="javascript:;" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-textarea-resize"></span><span class="mtext">Users</span>
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle">
+                        <li>
+                            <a href="javascript:;" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-table"></span><span class="mtext">Books</span>
                             </a>
                         </li>
@@ -33,8 +33,8 @@
                                 <span class="micon bi bi-calendar4-week"></span><span class="mtext">Orders</span>
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle">
+                        <li>
+                            <a href="javascript:;" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-archive"></span><span class="mtext">Orders history</span>
                             </a>
                         </li>
