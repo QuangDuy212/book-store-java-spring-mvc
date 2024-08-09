@@ -1,6 +1,7 @@
 package com.vn.bookstore.controller.admin;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -73,5 +75,15 @@ public class UserController {
     @PostMapping("/admin/user/update")
     public String postUpdateUserAdmin(Model model) {
         return "admin/user/update";
+    }
+
+    @GetMapping("/admin/user/{id}")
+    public String getViewUserAdminPage(Model model, @PathVariable long id) {
+        Optional<User> user = this.userService.getUserById(id);
+        if (user.isPresent()) {
+            model.addAttribute("user", user.get());
+            model.addAttribute("newUser", user.get());
+        }
+        return "admin/user/detail";
     }
 }
