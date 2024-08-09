@@ -94,7 +94,7 @@
                                                             <div class="col-sm-8">
                                                                 <form:input type="email"
                                                                     class="form-control ${not empty errorFullName ? 'is-invalid' : ''}"
-                                                                    path="email" />
+                                                                    path="email" required="true" />
                                                                 ${errorEmail}
                                                             </div>
                                                         </div>
@@ -103,7 +103,7 @@
                                                             <div class="col-sm-8">
                                                                 <form:input type="password"
                                                                     class="form-control ${not empty errorFullName ? 'is-invalid' : ''}"
-                                                                    path="password" />
+                                                                    path="password" required="true" />
                                                                 ${errorPassword}
                                                             </div>
                                                         </div>
@@ -112,7 +112,7 @@
                                                             <div class="col-sm-8">
                                                                 <form:input type="text"
                                                                     class="form-control ${not empty errorFullName ? 'is-invalid' : ''}"
-                                                                    path="fullName" />
+                                                                    path="fullName" required="true" />
                                                                 ${errorFullName}
                                                             </div>
                                                         </div>

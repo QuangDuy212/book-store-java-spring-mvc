@@ -59,28 +59,16 @@ public class UserController {
         if (newUserBindingResult.hasErrors()) {
             return "/admin/user/create";
         }
-        User newUser = new User();
-        newUser.setEmail(user.getEmail());
-        newUser.setPassword(this.passwordEncoder.encode(user.getPassword()));
-        newUser.setFullName(user.getFullName());
-        newUser.setRole(this.roleService.findRoleByName(user.getRole().getName()));
+        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        user.setRole(this.roleService.findRoleByName(user.getRole().getName()));
         if (file != null) {
             String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
             if (avatar != "") {
-                newUser.setAvatar(avatar);
+                user.setAvatar(avatar);
             }
         }
-        if (user.getAddress() != "") {
-            newUser.setAddress(user.getAddress());
-        }
-        if (user.getGender() != "") {
-            newUser.setGender(user.getGender());
-        }
-        if (user.getPhone() != 0) {
-            newUser.setPhone(user.getPhone());
-        }
 
-        this.userService.createAUser(newUser);
+        this.userService.createAUser(user);
         return "redirect:/admin/user";
     }
 
