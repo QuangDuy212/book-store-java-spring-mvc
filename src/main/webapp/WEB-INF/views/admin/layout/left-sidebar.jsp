@@ -14,12 +14,12 @@
                 <div class="sidebar-menu">
                     <ul id="accordion-menu">
                         <li>
-                            <a href="javascript:;" class="dropdown-toggle no-arrow">
+                            <a href="/admin" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-house"></span><span class="mtext">Home</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:;" class="dropdown-toggle no-arrow">
+                            <a href="/admin/user" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-textarea-resize"></span><span class="mtext">Users</span>
                             </a>
                         </li>
