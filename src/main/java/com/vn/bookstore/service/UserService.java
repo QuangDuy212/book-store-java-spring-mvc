@@ -18,4 +18,8 @@ public class UserService {
     public void createAUser(User user) {
         this.userRepository.save(user);
     }
+
+    public boolean checkEmailExist(String email) {
+        return this.userRepository.existsByEmail(email);
+    }
 }
