@@ -37,6 +37,8 @@ public class UserController {
 
     @GetMapping("/admin/user")
     public String getUserAdminPage(Model model) {
+        List<User> users = this.userService.fetchAllUsers();
+        model.addAttribute("users", users);
         return "admin/user/show";
     }
 
@@ -59,16 +61,7 @@ public class UserController {
         if (newUserBindingResult.hasErrors()) {
             return "/admin/user/create";
         }
-        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
-        user.setRole(this.roleService.findRoleByName(user.getRole().getName()));
-        if (file != null) {
-            String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
-            if (avatar != "") {
-                user.setAvatar(avatar);
-            }
-        }
-
-        this.userService.createAUser(user);
+        this.userService.createAUser(user, file);
         return "redirect:/admin/user";
     }
 
