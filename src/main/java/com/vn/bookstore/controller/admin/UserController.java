@@ -73,8 +73,16 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String postUpdateUserAdmin(Model model) {
-        return "admin/user/update";
+    public String postUpdateUserAdmin(Model model, @ModelAttribute("newUser") User user) {
+        Optional<User> currentUser = this.userService.getUserById(user.getId());
+        if (currentUser.isPresent()) {
+            currentUser.get().setFullName(user.getFullName());
+            currentUser.get().setGender(user.getGender());
+            currentUser.get().setRole(user.getRole());
+            currentUser.get().setPhone(user.getPhone());
+            currentUser.get().setAddress(user.getAddress());
+        }
+        return "redirect:/admin/user";
     }
 
     @GetMapping("/admin/user/{id}")

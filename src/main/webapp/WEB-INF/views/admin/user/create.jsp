@@ -53,6 +53,8 @@
                         f.parentNode.insertBefore(j, f);
                     })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
                 </script>
+
+
                 <!-- End Google Tag Manager -->
             </head>
 
@@ -86,6 +88,14 @@
                                                 </c:set>
                                                 <h5 style="margin: 10px 0 20px;">Create new user</h5>
                                                 <div class="dropdown-divider"></div>
+                                                <div
+                                                    style="width: 100%; display: flex; justify-content: center; align-items: center; margin: 20px 0;">
+                                                    <div style="width: 150px; height: 150px; border-radius: 50%; ">
+                                                        <img src="/images/avatar/default-avatar.webp" alt=""
+                                                            class="avatar-photo" id="avatarPreview"
+                                                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+                                                    </div>
+                                                </div>
                                                 <section>
                                                     <div class="form-wrap  mx-auto">
                                                         <div class="form-group row">
@@ -165,10 +175,6 @@
                                                                 name="hoidanitFile" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 mb-3">
-                                                        <img style="max-height: 250px; display: none;"
-                                                            alt="avatar preview" id="avatarPreview" />
-                                                    </div>
                                                     <div class="form-group row" style="float: right;">
                                                         <div class="col-sm-12">
                                                             <button
@@ -200,6 +206,23 @@
                 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
                         style="display: none; visibility: hidden"></iframe></noscript>
                 <!-- End Google Tag Manager (noscript) -->
+                <script>
+                    $(document).ready(() => {
+                        const avatarFile = $("#avatarFile");
+                        const avatarImg = "${newUser.avatar}";
+                        if (avatarImg) {
+                            const imgURL = "/images/avatar/" + avatarImg;
+                            $("#avatarPreview").attr("src", imgURL);
+                            $("#avatarPreview").css({ "display": "block" });
+                        }
+                        avatarFile.change(function (e) {
+                            const imgURL = URL.createObjectURL(e.target.files[0]);
+                            $("#avatarPreview").attr("src", imgURL);
+                            $("#avatarPreview").css({ "display": "block" });
+                            console.log(">>> check")
+                        });
+                    });
+                </script>
             </body>
 
             </html>
