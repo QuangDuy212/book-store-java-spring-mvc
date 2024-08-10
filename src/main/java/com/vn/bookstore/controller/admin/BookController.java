@@ -1,13 +1,19 @@
 package com.vn.bookstore.controller.admin;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.vn.bookstore.domain.Book;
 import com.vn.bookstore.domain.Category;
+import com.vn.bookstore.domain.User;
 import com.vn.bookstore.service.BookService;
 import com.vn.bookstore.service.CategoryService;
 
@@ -37,5 +43,11 @@ public class BookController {
         model.addAttribute("newBook", new Book());
         model.addAttribute("categories", categories);
         return "admin/book/create";
+    }
+
+    @PostMapping("/admin/book/create")
+    public String postCreateBookAdmin(Model model, @ModelAttribute("newBook") Book book,
+            @RequestParam("avatarUpdateFile") MultipartFile file) {
+        return "redirect:/admin/user";
     }
 }

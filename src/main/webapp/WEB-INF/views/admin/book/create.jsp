@@ -96,9 +96,17 @@
                                         <div
                                             style="width: 100%; display: flex; justify-content: center; align-items: center;">
                                             <div
-                                                style="width: 250px; height: 250px; border-radius: 10px; overflow: hidden; ">
-                                                <img id="avatarProfilePre" class="avatar-photo"
-                                                    style="width: 100%; height: 100%; object-fit: cover; " />
+                                                style="width: 300px; height: 400px; border-radius: 10px; overflow: hidden;border: 1px solid #ccc; ">
+                                                <img id="createBookPre" class="avatar-photo"
+                                                    style="width: 100%; height: 100%; object-fit: contain; display: none;" />
+                                            </div>
+                                        </div>
+                                        <div
+                                            style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                                            <div class="form-group " style="width: 60%;">
+                                                <input class="form-control-file form-control height-auto" type="file"
+                                                    id="createBookFile" accept=".png, .jpg, .jpeg"
+                                                    name="createBookFile" />
                                             </div>
                                         </div>
                                     </div>
@@ -183,18 +191,17 @@
                 <!-- End Google Tag Manager (noscript) -->
                 <script>
                     $(document).ready(() => {
-                        const avatarFile = $("#avatarFile");
-                        const avatarImg = "${newUser.avatar}";
-                        if (avatarImg) {
-                            const imgURL = "/images/avatar/" + avatarImg;
-                            $("#avatarPreview").attr("src", imgURL);
-                            $("#avatarPreview").css({ "display": "block" });
+                        const createBookFile = $("#createBookFile");
+                        const bookImg = "${newUser.avatar}";
+                        if (bookImg) {
+                            const imgURL = "/images/book/" + bookImg;
+                            $("#createBookPre").attr("src", imgURL);
+                            $("#createBookPre").css({ "display": "block" });
                         }
-                        avatarFile.change(function (e) {
+                        createBookFile.change(function (e) {
                             const imgURL = URL.createObjectURL(e.target.files[0]);
-                            $("#avatarPreview").attr("src", imgURL);
-                            $("#avatarPreview").css({ "display": "block" });
-                            console.log(">>> check")
+                            $("#createBookPre").attr("src", imgURL);
+                            $("#createBookPre").css({ "display": "block" });
                         });
                     });
                 </script>
