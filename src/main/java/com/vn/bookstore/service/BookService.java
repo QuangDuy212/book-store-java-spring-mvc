@@ -3,6 +3,7 @@ package com.vn.bookstore.service;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,17 +31,40 @@ public class BookService {
         return this.bookReposity.findAll(pageable);
     }
 
+    public Optional<Book> getBookById(long id) {
+        return this.bookReposity.findById(id);
+    }
+
     public void createABook(Book book, MultipartFile file) {
         if (!file.isEmpty()) {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
             book.setUpdatedAt(timeStamp);
             book.setCreatedAt(timeStamp);
-            String image = this.uploadService.handleSaveUploadFile(file, "avatar");
+            String image = this.uploadService.handleSaveUploadFile(file, "book");
             if (image != "") {
                 book.setImage(image);
             }
             this.bookReposity.save(book);
         }
+    }
+
+    public void handleUpdateABook(Book book, MultipartFile file) {
+        Optional<Book> currentBook = this.bookReposity.findById(book.getId());
+        currentBook.get().setMainText(book.getMainText());
+        currentBook.get().setAuthor(book.getAuthor());
+        currentBook.get().setPrice(book.getPrice());
+        currentBook.get().setSold(book.getSold());
+        currentBook.get().setQuantity(book.getQuantity());
+        currentBook.get().setCategory(book.getCategory());
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        book.setUpdatedAt(timeStamp);
+        if (!file.isEmpty()) {
+            String image = this.uploadService.handleSaveUploadFile(file, "book");
+            if (image != "") {
+                book.setImage(image);
+            }
+        }
+        this.bookReposity.save(book);
     }
 
 }

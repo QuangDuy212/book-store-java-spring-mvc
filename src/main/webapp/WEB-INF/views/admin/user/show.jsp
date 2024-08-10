@@ -125,9 +125,11 @@
                                                 <td>${user.role.name}</td>
                                                 <td>${user.phone}</td>
                                                 <td>
-                                                    <div class="col-md-4 col-sm-12">
-                                                        <a href="/admin/user/delete/${user.id}"
-                                                            class="btn btn-danger">Delete</a>
+                                                    <div class="table-actions">
+                                                        <a href="/admin/user/update/${user.id}" data-color="#265ed7"><i
+                                                                class="icon-copy dw dw-edit2"></i></a>
+                                                        <a href="/admin/user/delete/${user.id}" data-color="#e95959"><i
+                                                                class="icon-copy dw dw-delete-3"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

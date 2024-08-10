@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,12 +46,43 @@ public class BookController {
         return "admin/book/create";
     }
 
+    @GetMapping("/admin/book/detail/{id}")
+    public String getDetailBookAdminPage(Model model, @PathVariable long id) {
+        Optional<Book> book = this.bookService.getBookById(id);
+        List<Category> categories = this.categoryService.fetchAllCategory();
+        if (book.isPresent()) {
+            model.addAttribute("book", book.get());
+            model.addAttribute("categories", categories);
+            return "admin/book/detail";
+        }
+        return "redirect:/admin/book";
+    }
+
+    @GetMapping("/admin/book/update/{id}")
+    public String getUpdateBookAdminPage(Model model, @PathVariable long id) {
+        Optional<Book> book = this.bookService.getBookById(id);
+        List<Category> categories = this.categoryService.fetchAllCategory();
+        if (book.isPresent()) {
+            model.addAttribute("book", book.get());
+            model.addAttribute("categories", categories);
+            return "admin/book/update";
+        }
+        return "redirect:/admin/book";
+    }
+
     @PostMapping("/admin/book/create")
     public String postCreateBookAdmin(Model model, @ModelAttribute("newBook") Book book,
             @RequestParam("createBookFile") MultipartFile file) {
         if (file.isEmpty())
             return "redirect:/admin/book/create";
         this.bookService.createABook(book, file);
+        return "redirect:/admin/book";
+    }
+
+    @PostMapping("/admin/book/update")
+    public String postUpdateBookAdmin(Model model, @ModelAttribute("book") Book book,
+            @RequestParam("updateBookFile") MultipartFile file) {
+        this.bookService.handleUpdateABook(book, file);
         return "redirect:/admin/book";
     }
 }
