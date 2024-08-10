@@ -101,30 +101,17 @@
                                                     style="width: 100%; height: 100%; object-fit: contain; display: none;" />
                                             </div>
                                         </div>
-                                        <div
-                                            style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
-                                            <div class="form-group " style="width: 60%;">
-                                                <input class="form-control-file form-control height-auto" type="file"
-                                                    id="createBookFile" accept=".png, .jpg, .jpeg"
-                                                    name="createBookFile" />
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
                                     <div class="pd-20 card-box height-100-p">
-                                        <form:form method="post" action="/admin/user/detail" modelAttribute="newBook"
+                                        <form:form method="post" action="/admin/book/create" modelAttribute="newBook"
                                             enctype="multipart/form-data">
                                             <ul class="profile-edit-list row">
                                                 <li class="weight-500 col-md-12">
                                                     <h4 class="text-blue h5 mb-20">
                                                         Book information
                                                     </h4>
-                                                    <div class="form-group" style="display: none;">
-                                                        <label>ID:</label>
-                                                        <form:input class="form-control form-control-lg" type="text"
-                                                            path="id" />
-                                                    </div>
                                                     <div class="form-group">
                                                         <label>Main text</label>
                                                         <form:input class="form-control form-control-lg" type="text"
@@ -160,6 +147,12 @@
                                                                 </form:option>
                                                             </c:forEach>
                                                         </form:select>
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="avatarFile">Image</label>
+                                                        <input class="form-control-file form-control height-auto"
+                                                            type="file" id="createBookFile" accept=".png, .jpg, .jpeg"
+                                                            name="createBookFile" />
                                                     </div>
                                                     <div class="form-group mb-0">
                                                         <button type="submit" class="btn btn-primary">Submit</button>

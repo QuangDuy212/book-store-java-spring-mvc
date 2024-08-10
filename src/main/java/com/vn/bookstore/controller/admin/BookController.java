@@ -47,7 +47,10 @@ public class BookController {
 
     @PostMapping("/admin/book/create")
     public String postCreateBookAdmin(Model model, @ModelAttribute("newBook") Book book,
-            @RequestParam("avatarUpdateFile") MultipartFile file) {
-        return "redirect:/admin/user";
+            @RequestParam("createBookFile") MultipartFile file) {
+        if (file.isEmpty())
+            return "redirect:/admin/book/create";
+        this.bookService.createABook(book, file);
+        return "redirect:/admin/book";
     }
 }
