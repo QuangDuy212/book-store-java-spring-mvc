@@ -177,7 +177,8 @@
                                                                             <label>Email</label>
                                                                             <form:input
                                                                                 class="form-control form-control-lg"
-                                                                                type="email" path="email" />
+                                                                                type="email" path="email"
+                                                                                disabled="true" />
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Gender and Role</label>

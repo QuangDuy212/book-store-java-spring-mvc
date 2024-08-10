@@ -107,7 +107,8 @@
                                                 <td>${user.phone}</td>
                                                 <td>
                                                     <div class="col-md-4 col-sm-12">
-                                                        <a href="/admin/user/${id}" class="btn btn-danger">Delete</a>
+                                                        <a href="/admin/user/delete/${user.id}"
+                                                            class="btn btn-danger">Delete</a>
                                                     </div>
                                                 </td>
                                             </tr>

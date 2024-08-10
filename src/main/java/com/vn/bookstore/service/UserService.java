@@ -43,6 +43,8 @@ public class UserService {
             String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
             if (avatar != "") {
                 user.setAvatar(avatar);
+            } else {
+                user.setAvatar("default-avatar.webp");
             }
         }
         this.userRepository.save(user);
@@ -65,6 +67,10 @@ public class UserService {
             this.userRepository.save(currentUser.get());
         }
         return currentUser;
+    }
+
+    public void handleDeleteUser(long id) {
+        this.userRepository.deleteById(id);
     }
 
     public boolean checkEmailExist(String email) {

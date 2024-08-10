@@ -33,7 +33,7 @@ public class User {
     private String avatar;
     private String address;
     private String gender;
-    private long phone;
+    private String phone;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
@@ -87,14 +87,6 @@ public class User {
         this.address = address;
     }
 
-    public long getPhone() {
-        return phone;
-    }
-
-    public void setPhone(long phone) {
-        this.phone = phone;
-    }
-
     public String getGender() {
         return gender;
     }
@@ -109,6 +101,14 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }
