@@ -95,7 +95,7 @@
                                                 <td class="table-plus">
                                                     <div class="txt">
                                                         <div class="weight-600">
-                                                            <a href="/admin/user/${user.id}">
+                                                            <a href="/admin/user/detail/${user.id}">
 
                                                                 ${user.email}
                                                             </a>

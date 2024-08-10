@@ -145,7 +145,7 @@
                                                     <div class="tab-pane fade height-100-p show active" id="setting"
                                                         role="tabpanel">
                                                         <div class="profile-setting">
-                                                            <form:form method="post" action="/admin/user/update"
+                                                            <form:form method="post" action="/admin/user/detail"
                                                                 modelAttribute="newUser" enctype="multipart/form-data">
                                                                 <ul class="profile-edit-list row">
                                                                     <li class="weight-500 col-md-12">
@@ -160,6 +160,12 @@
                                                                                     id="avatarUpdatePre"
                                                                                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
                                                                             </div>
+                                                                        </div>
+                                                                        <div class="form-group" style="display: none;">
+                                                                            <label>ID:</label>
+                                                                            <form:input
+                                                                                class="form-control form-control-lg"
+                                                                                type="text" path="id" />
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Full Name</label>
@@ -206,8 +212,7 @@
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label>Phone</label>
-                                                                            <form:input
-                                                                                class="form-control form-control-lg date-picker"
+                                                                            <form:input class="form-control "
                                                                                 type="text" path="phone" />
                                                                         </div>
                                                                         <div class="form-group">
@@ -221,7 +226,7 @@
                                                                                 class="form-control-file form-control height-auto"
                                                                                 type="file" id="avatarUpdateFile"
                                                                                 accept=".png, .jpg, .jpeg"
-                                                                                name="hoidanitFile" />
+                                                                                name="avatarUpdateFile" />
                                                                         </div>
                                                                         <div class="form-group mb-0">
                                                                             <button type="submit"

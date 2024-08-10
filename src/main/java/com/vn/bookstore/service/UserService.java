@@ -48,6 +48,25 @@ public class UserService {
         this.userRepository.save(user);
     }
 
+    public Optional<User> handleUpdateUser(User user, MultipartFile file) {
+        Optional<User> currentUser = this.getUserById(user.getId());
+        if (currentUser.isPresent()) {
+            currentUser.get().setFullName(user.getFullName());
+            currentUser.get().setGender(user.getGender());
+            currentUser.get().setRole(this.roleService.findRoleByName(user.getRole().getName()));
+            currentUser.get().setPhone(user.getPhone());
+            currentUser.get().setAddress(user.getAddress());
+            if (!file.isEmpty()) {
+                String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+                if (avatar != "") {
+                    currentUser.get().setAvatar(avatar);
+                }
+            }
+            this.userRepository.save(currentUser.get());
+        }
+        return currentUser;
+    }
+
     public boolean checkEmailExist(String email) {
         return this.userRepository.existsByEmail(email);
     }

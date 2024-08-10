@@ -67,25 +67,14 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
-    @GetMapping("/admin/user/update")
-    public String getUpdateUserAdminPage(Model model) {
-        return "admin/user/update";
-    }
-
-    @PostMapping("/admin/user/update")
-    public String postUpdateUserAdmin(Model model, @ModelAttribute("newUser") User user) {
-        Optional<User> currentUser = this.userService.getUserById(user.getId());
-        if (currentUser.isPresent()) {
-            currentUser.get().setFullName(user.getFullName());
-            currentUser.get().setGender(user.getGender());
-            currentUser.get().setRole(user.getRole());
-            currentUser.get().setPhone(user.getPhone());
-            currentUser.get().setAddress(user.getAddress());
-        }
+    @PostMapping("/admin/user/detail")
+    public String postUpdateUserAdmin(Model model, @ModelAttribute("newUser") User user,
+            @RequestParam("avatarUpdateFile") MultipartFile file) {
+        Optional<User> currentUser = this.userService.handleUpdateUser(user, file);
         return "redirect:/admin/user";
     }
 
-    @GetMapping("/admin/user/{id}")
+    @GetMapping("/admin/user/detail/{id}")
     public String getViewUserAdminPage(Model model, @PathVariable long id) {
         Optional<User> user = this.userService.getUserById(id);
         if (user.isPresent()) {
