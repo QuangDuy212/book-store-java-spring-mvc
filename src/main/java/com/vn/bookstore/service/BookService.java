@@ -67,4 +67,8 @@ public class BookService {
         this.bookReposity.save(book);
     }
 
+    public void handleDeleteBook(long id) {
+        this.bookReposity.deleteById(id);
+    }
+
 }

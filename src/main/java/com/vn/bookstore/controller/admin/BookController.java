@@ -70,6 +70,13 @@ public class BookController {
         return "redirect:/admin/book";
     }
 
+    @GetMapping("/admin/book/delete/{id}")
+    public String getDeleteBookAdminPage(Model model, @PathVariable long id) {
+        model.addAttribute("id", id);
+        model.addAttribute("book", new Book());
+        return "admin/book/delete";
+    }
+
     @PostMapping("/admin/book/create")
     public String postCreateBookAdmin(Model model, @ModelAttribute("newBook") Book book,
             @RequestParam("createBookFile") MultipartFile file) {
@@ -83,6 +90,12 @@ public class BookController {
     public String postUpdateBookAdmin(Model model, @ModelAttribute("book") Book book,
             @RequestParam("updateBookFile") MultipartFile file) {
         this.bookService.handleUpdateABook(book, file);
+        return "redirect:/admin/book";
+    }
+
+    @PostMapping("/admin/book/delete")
+    public String postDeleteBookAdmin(Model model, @ModelAttribute("book") Book book) {
+        this.bookService.handleDeleteBook(book.getId());
         return "redirect:/admin/book";
     }
 }
