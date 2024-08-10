@@ -102,8 +102,8 @@
                                     <div style="display: flex; margin-top: 20px; gap: 20px;">
                                         <form:form method="post" action="/admin/book/delete" modelAttribute="book">
                                             <form:input value="${id}" path="id" style="display: none;" />
-                                            <button type="submit" class="btn btn-danger" style="width: 60px;"
-                                                id="sa-success">Yes</button>
+                                            <button type="submit" class="btn btn-danger"
+                                                style="width: 60px;">Yes</button>
                                         </form:form>
                                         <a class="btn btn-primary" href="/admin/book" style="width: 60px;">No</a>
                                     </div>

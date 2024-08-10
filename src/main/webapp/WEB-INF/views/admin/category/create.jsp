@@ -73,7 +73,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="title">
-                                        <h4>Delete</h4>
+                                        <h4>Create</h4>
                                     </div>
                                     <nav aria-label="breadcrumb" role="navigation">
                                         <ol class="breadcrumb">
@@ -81,10 +81,10 @@
                                                 <a href="/admin">Home</a>
                                             </li>
                                             <li class="breadcrumb-item">
-                                                <a href="/admin/user">Users</a>
+                                                <a href="/admin/category">Categories</a>
                                             </li>
                                             <li class="breadcrumb-item active" aria-current="page">
-                                                Delete
+                                                Create
                                             </li>
                                         </ol>
                                     </nav>
@@ -94,23 +94,29 @@
                         <div class="page-header">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
-                                    <div class="title">
-                                        Are you sure to want to delete this user id = ${id}
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12">
-                                    <div style="display: flex; margin-top: 20px; gap: 20px;">
-                                        <form:form method="post" action="/admin/user/delete" modelAttribute="user">
-                                            <form:input value="${id}" path="id" style="display: none;" />
-                                            <button type="submit" class="btn btn-danger"
-                                                style="width: 60px;">Yes</button>
-                                        </form:form>
-                                        <a class="btn btn-primary" href="/admin/user" style="width: 60px;">No</a>
-                                    </div>
+                                    <form:form method="post" action="/admin/category/create"
+                                        modelAttribute="newCategory">
+                                        <c:set var="errorName">
+                                            <form:errors path="name" cssClass="invalid-feedback" />
+                                        </c:set>
+                                        <div class="form-group row ">
+                                            <label class="col-sm-2 col-form-label ">Category</label>
+                                            <div class="col-sm-8 ">
+                                                <form:input type="text"
+                                                    class="form-control ${not empty errorName ? 'is-invalid' : ''}"
+                                                    path="name" required="true" />
+                                                ${errorName}
+                                            </div>
+                                            <div class="col-sm-2 ">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form:form>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
                 <!-- welcome modal start -->
                 <jsp:include page="../layout/welcome.jsp"></jsp:include>

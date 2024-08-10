@@ -81,7 +81,7 @@
                                                 <a href="/admin">Home</a>
                                             </li>
                                             <li class="breadcrumb-item">
-                                                <a href="/admin/user">Users</a>
+                                                <a href="/admin/category">Categories</a>
                                             </li>
                                             <li class="breadcrumb-item active" aria-current="page">
                                                 Delete
@@ -95,17 +95,18 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="title">
-                                        Are you sure to want to delete this user id = ${id}
+                                        Are you sure to want to delete this category id = ${id}
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div style="display: flex; margin-top: 20px; gap: 20px;">
-                                        <form:form method="post" action="/admin/user/delete" modelAttribute="user">
+                                        <form:form method="post" action="/admin/category/delete"
+                                            modelAttribute="category">
                                             <form:input value="${id}" path="id" style="display: none;" />
                                             <button type="submit" class="btn btn-danger"
                                                 style="width: 60px;">Yes</button>
                                         </form:form>
-                                        <a class="btn btn-primary" href="/admin/user" style="width: 60px;">No</a>
+                                        <a class="btn btn-primary" href="/admin/category" style="width: 60px;">No</a>
                                     </div>
                                 </div>
                             </div>

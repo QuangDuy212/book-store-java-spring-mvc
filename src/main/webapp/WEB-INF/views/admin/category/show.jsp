@@ -99,8 +99,7 @@
                                                 Table Categories
                                             </span>
                                             <span>
-                                                <a href="/admin/book/create" class="btn btn-primary btn-lg">Add new
-                                                    Category</a>
+                                                <a href="/admin/category/create" class="btn btn-primary btn-lg">Add</a>
                                             </span>
 
                                         </div>
@@ -115,22 +114,17 @@
                                             <tbody>
                                                 <c:forEach var="category" items="${categories}">
                                                     <tr>
-                                                        <td class="table-plus">
+                                                        <td class="table-plus ">
                                                             ${category.id}
                                                         </td>
                                                         <td>
-                                                            <div class="txt">
-                                                                <a href="/admin/category/detail/${category.id}">
-                                                                    ${category.name}
-                                                                </a>
+                                                            <div class="txt ">
+                                                                ${category.name}
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <div class="table-actions">
-                                                                <a href="/admin/book/detail/${category.id}"
-                                                                    data-color="#265ed7"><i
-                                                                        class="icon-copy dw dw-edit2"></i></a>
-                                                                <a href="/admin/book/delete/${category.id}"
+                                                            <div class="table-actions ">
+                                                                <a href="/admin/category/delete/${category.id}"
                                                                     data-color="#e95959"><i
                                                                         class="icon-copy dw dw-delete-3"></i></a>
                                                             </div>
