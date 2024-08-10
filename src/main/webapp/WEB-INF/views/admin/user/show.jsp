@@ -67,6 +67,25 @@
 
             <div class="main-container">
                 <div class="xs-pd-20-10 pd-ltr-20">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="title">
+                                    <h4>User</h4>
+                                </div>
+                                <nav aria-label="breadcrumb" role="navigation">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="/admin">Home</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <a href="/admin/user">Users</a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 ">
                             <div class="card-box pb-10">

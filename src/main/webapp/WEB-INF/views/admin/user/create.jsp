@@ -66,7 +66,30 @@
                 <jsp:include page="../layout/left-sidebar.jsp"></jsp:include>
                 <div class="mobile-menu-overlay"></div>
                 <div class="main-container">
-
+                    <div class="xs-pd-20-10 pd-ltr-20">
+                        <div class="page-header">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="title">
+                                        <h4>Create</h4>
+                                    </div>
+                                    <nav aria-label="breadcrumb" role="navigation">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="/admin">Home</a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="/admin/user">Users</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                Create
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="register-page-wrap d-flex align-items-center flex-wrap justify-content-center">
                         <div class="container">
                             <div class="row align-items-center">

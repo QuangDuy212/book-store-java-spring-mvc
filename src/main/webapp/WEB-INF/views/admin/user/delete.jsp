@@ -68,43 +68,45 @@
                 <div class="mobile-menu-overlay"></div>
 
                 <div class="main-container">
-                    <div class="page-header">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <div class="title">
-                                    <h4>Delete</h4>
+                    <div class="xs-pd-20-10 pd-ltr-20">
+                        <div class="page-header">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="title">
+                                        <h4>Delete</h4>
+                                    </div>
+                                    <nav aria-label="breadcrumb" role="navigation">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="/admin">Home</a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="/admin/user">Users</a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                Delete
+                                            </li>
+                                        </ol>
+                                    </nav>
                                 </div>
-                                <nav aria-label="breadcrumb" role="navigation">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a href="/admin">Home</a>
-                                        </li>
-                                        <li class="breadcrumb-item">
-                                            <a href="/admin/user">Users</a>
-                                        </li>
-                                        <li class="breadcrumb-item active" aria-current="page">
-                                            Delete
-                                        </li>
-                                    </ol>
-                                </nav>
                             </div>
                         </div>
-                    </div>
-                    <div class="page-header">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <div class="title">
-                                    Are you sure to want to delete this user id = ${id}
+                        <div class="page-header">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="title">
+                                        Are you sure to want to delete this user id = ${id}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12">
-                                <div style="display: flex; margin-top: 20px; gap: 20px;">
-                                    <form:form method="post" action="/admin/user/delete" modelAttribute="user">
-                                        <form:input value="${id}" path="id" style="display: none;" />
-                                        <button type="submit" class="btn btn-danger" style="width: 60px;"
-                                            id="sa-success">Yes</button>
-                                    </form:form>
-                                    <a class="btn btn-primary" href="/admin/user" style="width: 60px;">No</a>
+                                <div class="col-md-12 col-sm-12">
+                                    <div style="display: flex; margin-top: 20px; gap: 20px;">
+                                        <form:form method="post" action="/admin/user/delete" modelAttribute="user">
+                                            <form:input value="${id}" path="id" style="display: none;" />
+                                            <button type="submit" class="btn btn-danger" style="width: 60px;"
+                                                id="sa-success">Yes</button>
+                                        </form:form>
+                                        <a class="btn btn-primary" href="/admin/user" style="width: 60px;">No</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
