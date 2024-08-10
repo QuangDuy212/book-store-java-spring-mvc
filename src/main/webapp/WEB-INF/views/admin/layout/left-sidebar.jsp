@@ -24,7 +24,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:;" class="dropdown-toggle no-arrow">
+                            <a href="/admin/book" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-table"></span><span class="mtext">Books</span>
                             </a>
                         </li>

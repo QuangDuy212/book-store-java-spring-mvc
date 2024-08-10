@@ -37,6 +37,10 @@ public class Book {
     private long quantity;
 
     @NotNull
+    @Min(value = 0, message = "Sold có ít nhất 0")
+    private long sold;
+
+    @NotNull
     @Size(min = 3, message = "Category không được để trống")
     private String category;
     private String createdAt;
@@ -121,6 +125,14 @@ public class Book {
 
     public void set__v(int __v) {
         this.__v = __v;
+    }
+
+    public long getSold() {
+        return sold;
+    }
+
+    public void setSold(long sold) {
+        this.sold = sold;
     }
 
 }
