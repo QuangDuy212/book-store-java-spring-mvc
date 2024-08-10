@@ -126,7 +126,7 @@
                                                 <td>${user.phone}</td>
                                                 <td>
                                                     <div class="table-actions">
-                                                        <a href="/admin/user/update/${user.id}" data-color="#265ed7"><i
+                                                        <a href="/admin/user/detail/${user.id}" data-color="#265ed7"><i
                                                                 class="icon-copy dw dw-edit2"></i></a>
                                                         <a href="/admin/user/delete/${user.id}" data-color="#e95959"><i
                                                                 class="icon-copy dw dw-delete-3"></i></a>

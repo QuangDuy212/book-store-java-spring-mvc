@@ -50,6 +50,13 @@ public class UserController {
         return "admin/user/create";
     }
 
+    @GetMapping("/admin/user/delete/{id}")
+    public String getDeleteUserAdminPage(Model model, @PathVariable long id) {
+        model.addAttribute("id", id);
+        model.addAttribute("user", new User());
+        return "admin/user/delete";
+    }
+
     @PostMapping("/admin/user/create")
     public String postCreateUserAdmin(Model model, @ModelAttribute("newUser") @Valid User user,
             BindingResult newUserBindingResult,
@@ -82,13 +89,6 @@ public class UserController {
             model.addAttribute("newUser", user.get());
         }
         return "admin/user/detail";
-    }
-
-    @GetMapping("/admin/user/delete/{id}")
-    public String getDeleteUserAdminPage(Model model, @PathVariable long id) {
-        model.addAttribute("id", id);
-        model.addAttribute("user", new User());
-        return "admin/user/delete";
     }
 
     @PostMapping("/admin/user/delete")
