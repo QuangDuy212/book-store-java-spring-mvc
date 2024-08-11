@@ -87,38 +87,37 @@
                                         <div class="row g-5 align-items-center">
                                             <div class="col-md-12 col-lg-7">
                                                 <h4 class="mb-3 text-secondary">100% genuine product</h4>
-                                                <h1 class="mb-5 display-3 text-primary" style="font-weight: 800;
-    line-height: 1.2;">Delicious, Nutritious and Cheap
+                                                <h1 class="mb-5 display-3 text-primary" style="font-size: calc(1.525rem + 3.3vw);font-weight: 600;
+    line-height: 1.2;">
+                                                    Delicious, Nutritious and Cheap
                                                 </h1>
                                             </div>
                                             <div class="col-md-12 col-lg-5">
-                                                <div id="carouselId" class="carousel slide position-relative"
+                                                <div id="carouselId"
+                                                    class="carousel slide position-relative d-flex justify-content-center"
                                                     data-bs-ride="carousel">
                                                     <div class="carousel-inner" role="listbox">
                                                         <div class="carousel-item active rounded"
-                                                            style="height: 250px; width: 450px;">
+                                                            style="height: 250px; ">
                                                             <img src="/images/book/banner1.jpg"
                                                                 class="img-fluid w-100 h-100 bg-secondary rounded"
                                                                 alt="First slide"
-                                                                style="width: 100%; height: 100%; object-fit: contain;">
+                                                                style="width: 100%; height: 100%; object-fit: cover;">
                                                         </div>
-                                                        <div class="carousel-item rounded"
-                                                            style="height: 250px; width: 450px;">
+                                                        <div class="carousel-item rounded" style="height: 250px; ;">
                                                             <img src="/images/book/banner2.webp"
                                                                 class="img-fluid w-100 h-100 rounded" alt="Second slide"
-                                                                style="width: 100%; height: 100%; object-fit: contain;">
+                                                                style="width: 100%; height: 100%; object-fit: cover;">
                                                         </div>
-                                                        <div class="carousel-item rounded"
-                                                            style="height: 250px; width: 450px;">
+                                                        <div class="carousel-item rounded" style="height: 250px; ">
                                                             <img src="/images/book/banner3.webp"
                                                                 class="img-fluid w-100 h-100 rounded" alt="Second slide"
-                                                                style="width: 100%; height: 100%; object-fit: contain;">
+                                                                style="width: 100%; height: 100%; object-fit: cover;">
                                                         </div>
-                                                        <div class="carousel-item rounded"
-                                                            style="height: 250px; width: 450px;">
+                                                        <div class="carousel-item rounded" style="height: 250px; ">
                                                             <img src="/images/book/banner4.jpg"
                                                                 class="img-fluid w-100 h-100 rounded" alt="Second slide"
-                                                                style="width: 100%; height: 100%; object-fit: contain;">
+                                                                style="width: 100%; height: 100%; object-fit: cover;">
                                                         </div>
                                                     </div>
                                                     <button class="carousel-control-prev" type="button"
@@ -152,7 +151,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product-wrap">
+                                <div class="product-wrap" style="margin-top: 20px;">
                                     <div class="product-list">
                                         <ul class="row">
                                             <c:forEach var="book" items="${books}">
@@ -163,13 +162,14 @@
                                                                 style="height: 100%; width: 100%; object-fit: cover;" />
                                                         </div>
                                                         <div class="product-caption">
-                                                            <h4 style="height: 60px;"><a
-                                                                    href="#">${book.mainText}123412341234134</a></h4>
-                                                            <div class="price"><del>$55.5</del><ins>
+                                                            <h4 style="height: 60px;"><a href="#">${book.mainText}</a>
+                                                            </h4>
+                                                            <div class="price"><del></del><ins>
                                                                     <fmt:formatNumber type="number"
                                                                         value=" ${book.price}" /> đ
                                                                 </ins></div>
-                                                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                                                            <a href="/book/${book.id}"
+                                                                class="btn btn-outline-primary">Read More</a>
                                                         </div>
                                                     </div>
                                                 </li>

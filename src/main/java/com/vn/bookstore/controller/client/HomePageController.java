@@ -1,10 +1,12 @@
 package com.vn.bookstore.controller.client;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.vn.bookstore.domain.Book;
 import com.vn.bookstore.service.BookService;
@@ -22,5 +24,14 @@ public class HomePageController {
         List<Book> books = this.bookService.fetchAllBooks();
         model.addAttribute("books", books);
         return "client/homepage/show";
+    }
+
+    @GetMapping("/book/{id}")
+    public String getDetailPage(Model model, @PathVariable long id) {
+        Optional<Book> book = this.bookService.getBookById(id);
+        if (book.isPresent()) {
+            model.addAttribute("book", book.get());
+        }
+        return "client/homepage/detail";
     }
 }
