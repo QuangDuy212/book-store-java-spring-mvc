@@ -23,16 +23,21 @@
                     <!-- Mobile Specific Metas -->
                     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
+
+
                     <!-- Google Font -->
                     <link
                         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
                         rel="stylesheet" />
                     <!-- CSS -->
-                    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/core.css" />
-                    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/icon-font.min.css" />
+                    <link rel="stylesheet" type="text/css" href="/admin/vendors/styles/core.css" />
+                    <link rel="stylesheet" type="text/css" href="/admin/vendors/styles/icon-font.min.css" />
                     <link rel="stylesheet" type="text/css"
                         href="/admin/src/plugins/jvectormap/jquery-jvectormap-2.0.3.css" />
-                    <link rel="stylesheet" type="text/css" href="admin/vendors/styles/style.css" />
+                    <link rel="stylesheet" type="text/css" href="/admin/vendors/styles/style.css" />
+                    <!-- Customized Bootstrap Stylesheet -->
+                    <!-- Template Stylesheet -->
+                    <link href="/client/css/style.css" rel="stylesheet">
 
                     <!-- Global site tag (gtag.js) - Google Analytics -->
                     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
@@ -77,40 +82,98 @@
                     <div class="main-container">
                         <div class="pd-ltr-20 xs-pd-20-10">
                             <div class="min-height-200px">
-                                <div class="page-header">
-                                    <div class="row">
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="title">
-                                                <h4>Product</h4>
+                                <div class=" py-5 mb-5 hero-header" style="margin-top: 0 !important;">
+                                    <div class="container py-5">
+                                        <div class="row g-5 align-items-center">
+                                            <div class="col-md-12 col-lg-7">
+                                                <h4 class="mb-3 text-secondary">100% genuine product</h4>
+                                                <h1 class="mb-5 display-3 text-primary" style="font-weight: 800;
+    line-height: 1.2;">Delicious, Nutritious and Cheap
+                                                </h1>
                                             </div>
-                                            <nav aria-label="breadcrumb" role="navigation">
-                                                <ol class="breadcrumb">
-                                                    <li class="breadcrumb-item">
-                                                        <a href="index.html">Home</a>
-                                                    </li>
-                                                    <li class="breadcrumb-item active" aria-current="page">
-                                                        Product
-                                                    </li>
-                                                </ol>
-                                            </nav>
+                                            <div class="col-md-12 col-lg-5">
+                                                <div id="carouselId" class="carousel slide position-relative"
+                                                    data-bs-ride="carousel">
+                                                    <div class="carousel-inner" role="listbox">
+                                                        <div class="carousel-item active rounded"
+                                                            style="height: 250px; width: 450px;">
+                                                            <img src="/images/book/banner1.jpg"
+                                                                class="img-fluid w-100 h-100 bg-secondary rounded"
+                                                                alt="First slide"
+                                                                style="width: 100%; height: 100%; object-fit: contain;">
+                                                        </div>
+                                                        <div class="carousel-item rounded"
+                                                            style="height: 250px; width: 450px;">
+                                                            <img src="/images/book/banner2.webp"
+                                                                class="img-fluid w-100 h-100 rounded" alt="Second slide"
+                                                                style="width: 100%; height: 100%; object-fit: contain;">
+                                                        </div>
+                                                        <div class="carousel-item rounded"
+                                                            style="height: 250px; width: 450px;">
+                                                            <img src="/images/book/banner3.webp"
+                                                                class="img-fluid w-100 h-100 rounded" alt="Second slide"
+                                                                style="width: 100%; height: 100%; object-fit: contain;">
+                                                        </div>
+                                                        <div class="carousel-item rounded"
+                                                            style="height: 250px; width: 450px;">
+                                                            <img src="/images/book/banner4.jpg"
+                                                                class="img-fluid w-100 h-100 rounded" alt="Second slide"
+                                                                style="width: 100%; height: 100%; object-fit: contain;">
+                                                        </div>
+                                                    </div>
+                                                    <button class="carousel-control-prev" type="button"
+                                                        data-bs-target="#carouselId" data-bs-slide="prev" style="
+                                                        width: 48px;
+                                                        height: 48px;
+                                                        border-radius: 48px;
+                                                        border: 1px solid #fff;
+                                                        background: #81c408;
+                                                        position: absolute;
+                                                        top: 50%;
+                                                        transform: translateY(-50%);">
+                                                        <span class="carousel-control-prev-icon"
+                                                            aria-hidden="true"></span>
+                                                    </button>
+                                                    <button class="carousel-control-next" type="button"
+                                                        data-bs-target="#carouselId" data-bs-slide="next" style="
+                                                        width: 48px;
+                                                        height: 48px;
+                                                        border-radius: 48px;
+                                                        border: 1px solid #fff;
+                                                        background: #81c408;
+                                                        position: absolute;
+                                                        top: 50%;
+                                                        transform: translateY(-50%);">
+                                                        <span class="carousel-control-next-icon"
+                                                            aria-hidden="true"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="product-wrap">
                                     <div class="product-list">
                                         <ul class="row">
-                                            <li class="col-lg-4 col-md-6 col-sm-12">
-                                                <div class="product-box">
-                                                    <div class="producct-img">
-                                                        <img src="/admin/vendors/images/product-img1.jpg" alt="" />
+                                            <c:forEach var="book" items="${books}">
+                                                <li class="col-lg-3 col-md-4 col-sm-12">
+                                                    <div class="product-box">
+                                                        <div class="producct-img" style="height: 300px;">
+                                                            <img src="/images/book/${book.image}" alt=""
+                                                                style="height: 100%; width: 100%; object-fit: cover;" />
+                                                        </div>
+                                                        <div class="product-caption">
+                                                            <h4 style="height: 60px;"><a
+                                                                    href="#">${book.mainText}123412341234134</a></h4>
+                                                            <div class="price"><del>$55.5</del><ins>
+                                                                    <fmt:formatNumber type="number"
+                                                                        value=" ${book.price}" /> đ
+                                                                </ins></div>
+                                                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                                                        </div>
                                                     </div>
-                                                    <div class="product-caption">
-                                                        <h4><a href="#">Gufram Bounce Black</a></h4>
-                                                        <div class="price"><del>$55.5</del><ins>$49.5</ins></div>
-                                                        <a href="#" class="btn btn-outline-primary">Read More</a>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                </li>
+                                            </c:forEach>
                                         </ul>
                                     </div>
                                     <div class="blog-pagination mb-30">
@@ -140,10 +203,10 @@
                     <jsp:include page="../layout/welcome.jsp"></jsp:include>
                     <!-- welcome modal end -->
                     <!-- js -->
-                    <script src="admin/vendors/scripts/core.js"></script>
-                    <script src="admin/vendors/scripts/script.min.js"></script>
-                    <script src="admin/vendors/scripts/process.js"></script>
-                    <script src="admin/vendors/scripts/layout-settings.js"></script>
+                    <script src="/admin/vendors/scripts/core.js"></script>
+                    <script src="/admin/vendors/scripts/script.min.js"></script>
+                    <script src="/admin/vendors/scripts/process.js"></script>
+                    <script src="/admin/vendors/scripts/layout-settings.js"></script>
                     <script src="/admin/src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
                     <script src="/admin/src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
                     <script src="/admin/src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
@@ -154,6 +217,14 @@
                     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
                             style="display: none; visibility: hidden"></iframe></noscript>
                     <!-- End Google Tag Manager (noscript) -->
+                    <script src="/client/js/main.js"></script>
+
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+                    <script src="/client/lib/easing/easing.min.js"></script>
+                    <script src="/client/lib/waypoints/waypoints.min.js"></script>
+                    <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
+                    <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
                 </body>
 
                 </html>
