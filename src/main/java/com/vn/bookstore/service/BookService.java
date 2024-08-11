@@ -35,6 +35,10 @@ public class BookService {
         return this.bookReposity.findById(id);
     }
 
+    public List<Book> getBooksByCategory(String category) {
+        return this.bookReposity.findByCategory(category);
+    }
+
     public void createABook(Book book, MultipartFile file) {
         if (!file.isEmpty()) {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());

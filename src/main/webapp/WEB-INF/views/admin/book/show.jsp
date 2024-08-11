@@ -99,8 +99,7 @@
                                                 Table Books
                                             </span>
                                             <span>
-                                                <a href="/admin/book/create" class="btn btn-primary btn-lg">Add new
-                                                    Book</a>
+                                                <a href="/admin/book/create" class="btn btn-primary btn-lg">Add </a>
                                             </span>
 
                                         </div>

@@ -155,14 +155,14 @@
                                     <div class="product-list">
                                         <ul class="row">
                                             <c:forEach var="book" items="${books}">
-                                                <li class="col-lg-3 col-md-4 col-sm-12">
+                                                <li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                                     <div class="product-box">
                                                         <div class="producct-img" style="height: 300px;">
                                                             <img src="/images/book/${book.image}" alt=""
                                                                 style="height: 100%; width: 100%; object-fit: cover;" />
                                                         </div>
                                                         <div class="product-caption">
-                                                            <h4 style="height: 60px;"><a href="#">${book.mainText}</a>
+                                                            <h4 style="height: 80px;"><a href="#">${book.mainText}</a>
                                                             </h4>
                                                             <div class="price"><del></del><ins>
                                                                     <fmt:formatNumber type="number"
@@ -203,6 +203,7 @@
                     <jsp:include page="../layout/welcome.jsp"></jsp:include>
                     <!-- welcome modal end -->
                     <!-- js -->
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                     <script src="/admin/vendors/scripts/core.js"></script>
                     <script src="/admin/vendors/scripts/script.min.js"></script>
                     <script src="/admin/vendors/scripts/process.js"></script>
@@ -210,21 +211,15 @@
                     <script src="/admin/src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
                     <script src="/admin/src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
                     <script src="/admin/src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
-                    <script src="/admin/src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
                     <script src="/admin/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-                    <script src="admin/vendors/scripts/dashboard2.js"></script>
+                    <script src="/admin/vendors/scripts/dashboard2.js"></script>
                     <!-- Google Tag Manager (noscript) -->
                     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
                             style="display: none; visibility: hidden"></iframe></noscript>
                     <!-- End Google Tag Manager (noscript) -->
-                    <script src="/client/js/main.js"></script>
 
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-                    <script src="/client/lib/easing/easing.min.js"></script>
-                    <script src="/client/lib/waypoints/waypoints.min.js"></script>
-                    <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
-                    <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
+                    <script src="/admin/src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
                 </body>
 
                 </html>

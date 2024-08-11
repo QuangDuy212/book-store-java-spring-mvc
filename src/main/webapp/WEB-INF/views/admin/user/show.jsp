@@ -94,7 +94,7 @@
                                         Table users
                                     </span>
                                     <span>
-                                        <a href="/admin/user/create" class="btn btn-primary btn-lg">Add new user</a>
+                                        <a href="/admin/user/create" class="btn btn-primary btn-lg">Add</a>
                                     </span>
 
                                 </div>

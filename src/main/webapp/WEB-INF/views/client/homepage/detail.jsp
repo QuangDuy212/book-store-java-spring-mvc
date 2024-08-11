@@ -85,15 +85,15 @@
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12">
                                             <div class="title">
-                                                <h4>Product Detail</h4>
+                                                <h4>Book Detail</h4>
                                             </div>
                                             <nav aria-label="breadcrumb" role="navigation">
                                                 <ol class="breadcrumb">
                                                     <li class="breadcrumb-item">
-                                                        <a href="index.html">Home</a>
+                                                        <a href="/">Home</a>
                                                     </li>
                                                     <li class="breadcrumb-item active" aria-current="page">
-                                                        Product Detail
+                                                        Book Detail
                                                     </li>
                                                 </ol>
                                             </nav>
@@ -104,66 +104,36 @@
                                     <div class="product-detail-wrap mb-30">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-12 col-sm-12">
-                                                <div class="product-slider slider-arrow">
-                                                    <div class="product-slide">
-                                                        <img src="vendors/images/product-img1.jpg" alt="" />
-                                                    </div>
-                                                    <div class="product-slide">
-                                                        <img src="vendors/images/product-img2.jpg" alt="" />
-                                                    </div>
-                                                    <div class="product-slide">
-                                                        <img src="vendors/images/product-img3.jpg" alt="" />
-                                                    </div>
-                                                    <div class="product-slide">
-                                                        <img src="vendors/images/product-img4.jpg" alt="" />
-                                                    </div>
-                                                </div>
-                                                <div class="product-slider-nav">
-                                                    <div class="product-slide-nav">
-                                                        <img src="vendors/images/product-img1.jpg" alt="" />
-                                                    </div>
-                                                    <div class="product-slide-nav">
-                                                        <img src="vendors/images/product-img2.jpg" alt="" />
-                                                    </div>
-                                                    <div class="product-slide-nav">
-                                                        <img src="vendors/images/product-img3.jpg" alt="" />
-                                                    </div>
-                                                    <div class="product-slide-nav">
-                                                        <img src="vendors/images/product-img4.jpg" alt="" />
+                                                <div class="product-slider slider-arrow"
+                                                    style="background-color: #fff; display: flex; justify-content: center; align-items: center; border-radius: 10px;padding: 10px;">
+                                                    <div class="product-slide" style="height: 400px;">
+                                                        <img src="/images/book/${book.image}" alt=""
+                                                            style="height: 100%; object-fit: contain;" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12 col-sm-12">
-                                                <div class="product-detail-desc pd-20 card-box height-100-p">
-                                                    <h4 class="mb-20 pt-20">Gufram Bounce Black</h4>
+                                                <div class="product-detail-desc pd-20 card-box ">
+                                                    <h4 class="mb-20 pt-20">${book.mainText}</h4>
                                                     <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                                        Duis aute irure dolor in reprehenderit in voluptate velit
-                                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                                                        sint occaecat cupidatat non proident, sunt in culpa qui
-                                                        officia deserunt mollit anim id est laborum.
+                                                        ${book.author}
                                                     </p>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                                    </p>
-                                                    <div class="price"><del>$55.5</del><ins>$49.5</ins></div>
-                                                    <div class="mx-w-150">
-                                                        <div class="form-group">
-                                                            <label class="text-blue">quantity</label>
-                                                            <input id="demo3_22" type="text" value="1"
-                                                                name="demo3_22" />
+                                                    <div class="price">
+                                                        <fmt:formatNumber type="number" value=" ${book.price}" /> đ
+                                                    </div>
+                                                    <div class="" style="width: 100%;">
+                                                        <div class="form-group d-flex row">
+                                                            <label
+                                                                class="col-sm-4 col-form-label d-flex align-items-center">Quantity</label>
+                                                            <div class="col-sm-8">
+                                                                <input id="demo3_22" type="text" value="1"
+                                                                    class="form-control" name="demo3_22" />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6 col-6">
-                                                            <a href="#" class="btn btn-primary btn-block">Add To
-                                                                Cart</a>
+                                                            <a href="#" class="btn btn-primary btn-block">Add Cart</a>
                                                         </div>
                                                         <div class="col-md-6 col-6">
                                                             <a href="#" class="btn btn-outline-primary btn-block">Buy
@@ -174,47 +144,30 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h4 class="mb-20">Recent Product</h4>
+                                    <h4 class="mb-20">Same category</h4>
                                     <div class="product-list">
                                         <ul class="row">
-                                            <li class="col-lg-4 col-md-6 col-sm-12">
-                                                <div class="product-box">
-                                                    <div class="producct-img">
-                                                        <img src="vendors/images/product-img1.jpg" alt="" />
-                                                    </div>
-                                                    <div class="product-caption">
-                                                        <h4><a href="#">Gufram Bounce Black</a></h4>
-                                                        <div class="price"><del>$55.5</del><ins>$49.5</ins></div>
-                                                        <a href="#" class="btn btn-outline-primary">Read More</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="col-lg-4 col-md-6 col-sm-12">
-                                                <div class="product-box">
-                                                    <div class="producct-img">
-                                                        <img src="vendors/images/product-img2.jpg" alt="" />
-                                                    </div>
-                                                    <div class="product-caption">
-                                                        <h4><a href="#">Gufram Bounce White</a></h4>
-                                                        <div class="price"><del>$75.5</del><ins>$50</ins></div>
-                                                        <a href="#" class="btn btn-outline-primary">Add To Cart</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="col-lg-4 col-md-6 col-sm-12">
-                                                <div class="product-box">
-                                                    <div class="producct-img">
-                                                        <img src="vendors/images/product-img3.jpg" alt="" />
-                                                    </div>
-                                                    <div class="product-caption">
-                                                        <h4><a href="#">Contrast Lace-Up Sneakers</a></h4>
-                                                        <div class="price">
-                                                            <ins>$80</ins>
+                                            <c:forEach var="sameBook" items="${sameBooks}">
+                                                <li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    <div class="product-box">
+                                                        <div class="producct-img" style="height: 300px;">
+                                                            <img src="/images/book/${sameBook.image}" alt=""
+                                                                style="height: 100%; width: 100%; object-fit: cover;" />
                                                         </div>
-                                                        <a href="#" class="btn btn-outline-primary">Add To Cart</a>
+                                                        <div class="product-caption">
+                                                            <h4 style="height: 80px;"><a
+                                                                    href="#">${sameBook.mainText}</a>
+                                                            </h4>
+                                                            <div class="price"><del></del><ins>
+                                                                    <fmt:formatNumber type="number"
+                                                                        value=" ${book.price}" /> đ
+                                                                </ins></div>
+                                                            <a href="/book/${sameBook.id}"
+                                                                class="btn btn-outline-primary">Read More</a>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </li>
+                                                </li>
+                                            </c:forEach>
                                         </ul>
                                     </div>
                                 </div>
@@ -238,19 +191,11 @@
                     <script src="/admin/src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
                     <script src="/admin/src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
                     <script src="/admin/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-                    <script src="admin/vendors/scripts/dashboard2.js"></script>
+                    <script src="/admin/vendors/scripts/dashboard2.js"></script>
                     <!-- Google Tag Manager (noscript) -->
                     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
                             style="display: none; visibility: hidden"></iframe></noscript>
                     <!-- End Google Tag Manager (noscript) -->
-                    <script src="/client/js/main.js"></script>
-
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-                    <script src="/client/lib/easing/easing.min.js"></script>
-                    <script src="/client/lib/waypoints/waypoints.min.js"></script>
-                    <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
-                    <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
                 </body>
 
                 </html>

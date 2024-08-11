@@ -29,8 +29,10 @@ public class HomePageController {
     @GetMapping("/book/{id}")
     public String getDetailPage(Model model, @PathVariable long id) {
         Optional<Book> book = this.bookService.getBookById(id);
+        List<Book> sameBooks = this.bookService.getBooksByCategory(book.get().getCategory());
         if (book.isPresent()) {
             model.addAttribute("book", book.get());
+            model.addAttribute("sameBooks", sameBooks);
         }
         return "client/homepage/detail";
     }
