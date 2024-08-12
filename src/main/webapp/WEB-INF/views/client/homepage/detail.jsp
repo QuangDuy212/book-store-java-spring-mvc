@@ -118,6 +118,9 @@
                                                     <p>
                                                         ${book.author}
                                                     </p>
+                                                    <p>
+                                                        Category: ${book.category}
+                                                    </p>
                                                     <div class="price">
                                                         <fmt:formatNumber type="number" value=" ${book.price}" /> đ
                                                     </div>

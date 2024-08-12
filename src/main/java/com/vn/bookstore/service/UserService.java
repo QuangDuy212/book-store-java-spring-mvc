@@ -36,6 +36,10 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
+    public User getUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
+    }
+
     public void createAUser(User user, MultipartFile file) {
         user.setPassword(this.passwordEncoder.encode(user.getPassword()));
         user.setRole(this.roleService.findRoleByName(user.getRole().getName()));
