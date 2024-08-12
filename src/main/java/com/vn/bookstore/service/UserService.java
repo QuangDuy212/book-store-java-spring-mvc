@@ -15,6 +15,8 @@ import com.vn.bookstore.domain.dto.RegisterDTO;
 import com.vn.bookstore.repository.RoleRepository;
 import com.vn.bookstore.repository.UserRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -79,6 +81,27 @@ public class UserService {
         return currentUser;
     }
 
+    public Optional<User> handleUpdateUserForClient(User user, MultipartFile file, HttpSession session) {
+        Optional<User> currentUser = this.getUserById(user.getId());
+        if (currentUser.isPresent()) {
+            currentUser.get().setFullName(user.getFullName());
+            currentUser.get().setGender(user.getGender());
+            currentUser.get().setRole(this.roleService.findRoleByName(user.getRole().getName()));
+            currentUser.get().setPhone(user.getPhone());
+            currentUser.get().setAddress(user.getAddress());
+            if (!file.isEmpty()) {
+                String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+                if (avatar != "") {
+                    currentUser.get().setAvatar(avatar);
+                }
+            }
+            this.userRepository.save(currentUser.get());
+            session.setAttribute("fullName", currentUser.get().getFullName());
+            session.setAttribute("avatar", currentUser.get().getAvatar());
+        }
+        return currentUser;
+    }
+
     public User registerDTOtoUser(RegisterDTO registerDTO) {
         User user = new User();
         user.setFullName(registerDTO.getFirstName() + " " + registerDTO.getLastName());
@@ -105,6 +128,7 @@ public class UserService {
         user.setPassword(hashPassword);
         user.setRole(this.roleService.findRoleByName("USER"));
         user.setAvatar("default-avatar.webp");
+        user.setGender("male");
         // save role
         this.handleCreateAUser(user);
     }
