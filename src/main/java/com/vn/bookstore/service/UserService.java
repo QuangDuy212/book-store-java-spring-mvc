@@ -104,6 +104,7 @@ public class UserService {
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
         user.setPassword(hashPassword);
         user.setRole(this.roleService.findRoleByName("USER"));
+        user.setAvatar("default-avatar.webp");
         // save role
         this.handleCreateAUser(user);
     }
