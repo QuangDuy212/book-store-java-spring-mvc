@@ -9,7 +9,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vn.bookstore.domain.Role;
 import com.vn.bookstore.domain.User;
+import com.vn.bookstore.domain.dto.RegisterDTO;
 import com.vn.bookstore.repository.RoleRepository;
 import com.vn.bookstore.repository.UserRepository;
 
@@ -38,6 +40,10 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return this.userRepository.findByEmail(email);
+    }
+
+    public void handleCreateAUser(User user) {
+        this.userRepository.save(user);
     }
 
     public void createAUser(User user, MultipartFile file) {
@@ -73,6 +79,14 @@ public class UserService {
         return currentUser;
     }
 
+    public User registerDTOtoUser(RegisterDTO registerDTO) {
+        User user = new User();
+        user.setFullName(registerDTO.getFirstName() + " " + registerDTO.getLastName());
+        user.setEmail(registerDTO.getEmail());
+        user.setPassword(registerDTO.getPassword());
+        return user;
+    }
+
     public void handleDeleteUser(long id) {
         this.userRepository.deleteById(id);
     }
@@ -83,5 +97,14 @@ public class UserService {
 
     public Optional<User> getUserById(long id) {
         return this.userRepository.findById(id);
+    }
+
+    public void handleRegister(RegisterDTO registerDTO) {
+        User user = this.registerDTOtoUser(registerDTO);
+        String hashPassword = this.passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashPassword);
+        user.setRole(this.roleService.findRoleByName("USER"));
+        // save role
+        this.handleCreateAUser(user);
     }
 }
