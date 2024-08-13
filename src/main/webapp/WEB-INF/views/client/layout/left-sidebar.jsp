@@ -24,19 +24,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/setting" class="dropdown-toggle no-arrow">
-                                <span class="micon bi bi-table"></span><span class="mtext">Setting</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/help" class="dropdown-toggle no-arrow">
-                                <span class="micon bi bi-archive"></span><span class="mtext">Help</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/logout" class="dropdown-toggle no-arrow">
-                                <span class="micon bi bi-calendar4-week"></span><span class="mtext">Logout</span>
+                            <a href="/books" class="dropdown-toggle no-arrow">
+                                <span class="micon bi bi-table"></span><span class="mtext">Books</span>
                             </a>
                         </li>
 

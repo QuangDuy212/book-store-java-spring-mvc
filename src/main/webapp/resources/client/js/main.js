@@ -26,20 +26,20 @@
             } else {
                 $('.fixed-top').removeClass('shadow').css('top', 0);
             }
-        } 
+        }
     });
-    
-    
-   // Back to top button
-   $(window).scroll(function () {
-    if ($(this).scrollTop() > 300) {
-        $('.back-to-top').fadeIn('slow');
-    } else {
-        $('.back-to-top').fadeOut('slow');
-    }
+
+
+    // Back to top button
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 300) {
+            $('.back-to-top').fadeIn('slow');
+        } else {
+            $('.back-to-top').fadeOut('slow');
+        }
     });
     $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
         return false;
     });
 
@@ -52,27 +52,27 @@
         dots: true,
         loop: true,
         margin: 25,
-        nav : true,
-        navText : [
+        nav: true,
+        navText: [
             '<i class="bi bi-arrow-left"></i>',
             '<i class="bi bi-arrow-right"></i>'
         ],
         responsiveClass: true,
         responsive: {
-            0:{
-                items:1
+            0: {
+                items: 1
             },
-            576:{
-                items:1
+            576: {
+                items: 1
             },
-            768:{
-                items:1
+            768: {
+                items: 1
             },
-            992:{
-                items:2
+            992: {
+                items: 2
             },
-            1200:{
-                items:2
+            1200: {
+                items: 2
             }
         }
     });
@@ -86,27 +86,27 @@
         dots: true,
         loop: true,
         margin: 25,
-        nav : true,
-        navText : [
+        nav: true,
+        navText: [
             '<i class="bi bi-arrow-left"></i>',
             '<i class="bi bi-arrow-right"></i>'
         ],
         responsiveClass: true,
         responsive: {
-            0:{
-                items:1
+            0: {
+                items: 1
             },
-            576:{
-                items:1
+            576: {
+                items: 1
             },
-            768:{
-                items:2
+            768: {
+                items: 2
             },
-            992:{
-                items:3
+            992: {
+                items: 3
             },
-            1200:{
-                items:4
+            1200: {
+                items: 4
             }
         }
     });
@@ -146,6 +146,75 @@
         }
         button.parent().parent().find('input').val(newVal);
     });
+
+    //handle filter products
+    $('#btnFilter').click(function (event) {
+        event.preventDefault();
+
+        let categoryArr = [];
+        let targetArr = [];
+        let priceArr = [];
+        //category filter
+        $("#categoryFilter .form-check-input:checked").each(function () {
+            categoryArr.push($(this).val());
+        });
+
+        //price filter
+        $("#priceFilter .form-check-input:checked").each(function () {
+            priceArr.push($(this).val());
+        });
+
+        //sort order
+        let sortValue = $('input[name="radio-sort"]:checked').val();
+
+        const currentUrl = new URL(window.location.href);
+        const searchParams = currentUrl.searchParams;
+
+        // Add or update query parameters
+        searchParams.set('page', '1');
+        searchParams.set('sort', sortValue);
+
+        //reset
+        searchParams.delete('category');
+        searchParams.delete('price');
+
+        if (categoryArr.length > 0) {
+            searchParams.set('category', categoryArr.join(','));
+        }
+
+        if (priceArr.length > 0) {
+            searchParams.set('price', priceArr.join(','));
+        }
+
+        // Update the URL and reload the page
+        window.location.href = currentUrl.toString();
+    });
+
+    //handle auto checkbox after page loading
+    // Parse the URL parameters
+    const params = new URLSearchParams(window.location.search);
+
+    // Set checkboxes for 'category'
+    if (params.has('category')) {
+        const factories = params.get('category').split(',');
+        factories.forEach(category => {
+            $(`#categoryFilter .form-check-input[value="${category}"]`).prop('checked', true);
+        });
+    }
+
+    // Set checkboxes for 'price'
+    if (params.has('price')) {
+        const prices = params.get('price').split(',');
+        prices.forEach(price => {
+            $(`#priceFilter .form-check-input[value="${price}"]`).prop('checked', true);
+        });
+    }
+
+    // Set radio buttons for 'sort'
+    if (params.has('sort')) {
+        const sort = params.get('sort');
+        $(`input[type="radio"][name="radio-sort"][value="${sort}"]`).prop('checked', true);
+    }
 
 })(jQuery);
 

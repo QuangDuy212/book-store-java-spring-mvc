@@ -187,17 +187,17 @@
                                             <div class="blog-pagination mb-30">
                                                 <div class="btn-toolbar justify-content-center mb-15">
                                                     <div class="btn-group">
-                                                        <a href="/books?page=${currentPage - 1}" class="btn btn-outline-primary prev
+                                                        <a href="/books?page=${currentPage - 1}${queryString}" class="btn btn-outline-primary prev
                                                         ${1 eq currentPage ? 'disabled ' : ''}
                                                         "><i class="fa fa-angle-double-left"></i></a>
                                                         <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
-                                                            <a href="/books?page=${loop.index + 1}" class=" ${(loop.index + 1) eq currentPage 
+                                                            <a href="/books?page=${loop.index + 1}${queryString}" class=" ${(loop.index + 1) eq currentPage 
                                                                 ? 'btn btn-primary current' : 
                                                                 'btn btn-outline-primary'}">
                                                                 ${loop.index + 1}
                                                             </a>
                                                         </c:forEach>
-                                                        <a href="/books?page=${loop.index + 1}" class="btn btn-outline-primary next
+                                                        <a href="/books?page=${loop.index + 1}${queryString}" class="btn btn-outline-primary next
                                                         ${totalPages eq currentPage ? 'disabled ' : ''}
                                                         "><i class="fa fa-angle-double-right"></i></a>
                                                     </div>
