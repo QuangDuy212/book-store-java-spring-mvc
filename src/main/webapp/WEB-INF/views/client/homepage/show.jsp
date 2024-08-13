@@ -8,7 +8,7 @@
                 <head>
                     <!-- Basic Page Info -->
                     <meta charset="utf-8" />
-                    <title>Admin | Book store</title>
+                    <title>Home | Book store</title>
 
                     <!-- Site favicon -->
                     <link rel="apple-touch-icon" sizes="180x180" href="admin/vendors/images/apple-touch-icon.png" />
@@ -176,21 +176,28 @@
                                             </c:forEach>
                                         </ul>
                                     </div>
-                                    <div class="blog-pagination mb-30">
-                                        <div class="btn-toolbar justify-content-center mb-15">
-                                            <div class="btn-group">
-                                                <a href="#" class="btn btn-outline-primary prev"><i
-                                                        class="fa fa-angle-double-left"></i></a>
-                                                <a href="#" class="btn btn-outline-primary">1</a>
-                                                <a href="#" class="btn btn-outline-primary">2</a>
-                                                <span class="btn btn-primary current">3</span>
-                                                <a href="#" class="btn btn-outline-primary">4</a>
-                                                <a href="#" class="btn btn-outline-primary">5</a>
-                                                <a href="#" class="btn btn-outline-primary next"><i
-                                                        class="fa fa-angle-double-right"></i></a>
+
+                                    <c:if test="${totalPages > 0}">
+                                        <div class="blog-pagination mb-30">
+                                            <div class="btn-toolbar justify-content-center mb-15">
+                                                <div class="btn-group">
+                                                    <a href="/?page=${currentPage - 1}" class="btn btn-outline-primary prev
+                                                    ${1 eq currentPage ? 'disabled ' : ''}
+                                                    "><i class="fa fa-angle-double-left"></i></a>
+                                                    <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
+                                                        <a href="/?page=${loop.index + 1}" class=" ${(loop.index + 1) eq currentPage 
+                                                            ? 'btn btn-primary current' : 
+                                                            'btn btn-outline-primary'}">
+                                                            ${loop.index + 1}
+                                                        </a>
+                                                    </c:forEach>
+                                                    <a href="/?page=${loop.index + 1}" class="btn btn-outline-primary next
+                                                    ${totalPages eq currentPage ? 'disabled ' : ''}
+                                                    "><i class="fa fa-angle-double-right"></i></a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </c:if>
                                 </div>
                             </div>
                             <div class="footer-wrap pd-20 mb-20 card-box">

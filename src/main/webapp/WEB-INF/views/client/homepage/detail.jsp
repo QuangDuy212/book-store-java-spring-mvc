@@ -119,7 +119,6 @@
                                                         ${book.author}
                                                     </p>
                                                     <p>
-                                                        vip
                                                         Category: ${book.category}
                                                     </p>
                                                     <div class="price">
