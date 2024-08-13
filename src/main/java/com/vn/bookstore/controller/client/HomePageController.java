@@ -31,6 +31,7 @@ import jakarta.servlet.http.HttpSession;
 public class HomePageController {
     private final BookService bookService;
     private final UserService userService;
+    private final int totalBookInPage = 8;
 
     public HomePageController(BookService bookService, UserService userService) {
         this.bookService = bookService;
@@ -58,15 +59,15 @@ public class HomePageController {
         if (bookCriteriaDTO.getSort() != null && bookCriteriaDTO.getSort().isPresent()) {
             String sort = bookCriteriaDTO.getSort().get();
             if (sort.equals("gia-tang-dan")) {
-                pageable = PageRequest.of(page - 1, 8, Sort.by(Book_.PRICE).ascending());
+                pageable = PageRequest.of(page - 1, totalBookInPage, Sort.by(Book_.PRICE).ascending());
             } else if (sort.equals("gia-giam-dan")) {
-                pageable = PageRequest.of(page - 1, 8, Sort.by(Book_.PRICE).descending());
+                pageable = PageRequest.of(page - 1, totalBookInPage, Sort.by(Book_.PRICE).descending());
             } else {
-                pageable = PageRequest.of(page - 1, 8);
+                pageable = PageRequest.of(page - 1, totalBookInPage);
 
             }
         } else {
-            pageable = PageRequest.of(page - 1, 8);
+            pageable = PageRequest.of(page - 1, totalBookInPage);
         }
 
         Page<Book> bks = this.bookService.fetchAllBooks(pageable);
@@ -79,12 +80,32 @@ public class HomePageController {
     }
 
     @GetMapping("/book/{id}")
-    public String getDetailPage(Model model, @PathVariable long id) {
+    public String getDetailPage(Model model, @PathVariable long id, BookCriteriaDTO bookCriteriaDTO) {
+        // paging variable
+        int page = 1;
+        try {
+            if (bookCriteriaDTO.getPage().isPresent()) {
+                // convert from String to int
+                page = Integer.parseInt(bookCriteriaDTO.getPage().get());
+            } else {
+                // page = 1
+            }
+        } catch (Exception e) {
+            // page = 1
+            // TODO: handle exception
+        }
+
+        // check sort price
+        Pageable pageable = PageRequest.of(page - 1, totalBookInPage);
         Optional<Book> book = this.bookService.getBookById(id);
-        List<Book> sameBooks = this.bookService.getBooksByCategory(book.get().getCategory());
+        Page<Book> bks = this.bookService.getBooksByCategory(pageable, book.get().getCategory());
+
+        List<Book> sameBooks = bks.getContent().size() > 0 ? bks.getContent() : new ArrayList<Book>();
         if (book.isPresent()) {
             model.addAttribute("book", book.get());
             model.addAttribute("sameBooks", sameBooks);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", bks.getTotalPages());
         }
         return "client/homepage/detail";
     }

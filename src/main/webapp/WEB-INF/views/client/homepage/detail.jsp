@@ -172,13 +172,31 @@
                                                 </li>
                                             </c:forEach>
                                         </ul>
+                                        <c:if test="${totalPages > 0}">
+                                            <div class="blog-pagination mb-30">
+                                                <div class="btn-toolbar justify-content-center mb-15">
+                                                    <div class="btn-group">
+                                                        <a href="/book/${book.id}?page=${currentPage - 1}" class="btn btn-outline-primary prev
+                                                    ${1 eq currentPage ? 'disabled ' : ''}
+                                                    "><i class="fa fa-angle-double-left"></i></a>
+                                                        <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
+                                                            <a href="/book/${book.id}?page=${loop.index + 1}" class=" ${(loop.index + 1) eq currentPage 
+                                                            ? 'btn btn-primary current' : 
+                                                            'btn btn-outline-primary'}">
+                                                                ${loop.index + 1}
+                                                            </a>
+                                                        </c:forEach>
+                                                        <a href="/book/${book.id}?page=${loop.index + 1}" class="btn btn-outline-primary next
+                                                    ${totalPages eq currentPage ? 'disabled ' : ''}
+                                                    "><i class="fa fa-angle-double-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
-                            <div class="footer-wrap pd-20 mb-20 card-box">
-                                DeskApp - Bootstrap 4 Admin Template By
-                                <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
-                            </div>
+                            <jsp:include page="../layout/footer.jsp"></jsp:include>
                         </div>
                     </div>
                     <!-- welcome modal start -->
