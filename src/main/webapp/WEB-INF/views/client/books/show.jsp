@@ -121,29 +121,33 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <div style="margin-top: 10px;font-size: 14px; font-weight: 600;">
-
-                                                Sắp xếp</div>
+                                            <div style=" margin-top: 10px;font-size: 14px; font-weight: 600;">
+                                                </divstyle>
+                                                Sắp xếp
+                                            </div>
 
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" id="sort-1"
                                                     value="gia-tang-dan" name="radio-sort">
                                                 <label class="form-check-label" for="sort-1"
-                                                    style="font-size: 14px;">Giá tăng dần</label>
+                                                    style="font-size: 14px;">Giá
+                                                    tăng dần</label>
                                             </div>
 
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" id="sort-2"
                                                     value="gia-giam-dan" name="radio-sort">
                                                 <label class="form-check-label" for="sort-2"
-                                                    style="font-size: 14px;">Giá giảm dần</label>
+                                                    style="font-size: 14px;">Giá
+                                                    giảm dần</label>
                                             </div>
 
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" id="sort-3" checked
                                                     value="gia-nothing" name="radio-sort">
                                                 <label class="form-check-label" for="sort-3"
-                                                    style="font-size: 14px;">Không sắp xếp</label>
+                                                    style="font-size: 14px;">Không
+                                                    sắp xếp</label>
                                             </div>
                                         </div>
                                     </div>
@@ -160,7 +164,11 @@
                                     <div class="product-list">
                                         <ul class="row">
                                             <c:if test="${totalPages ==  0}">
-                                                <div>Không tìm thấy sản phẩm</div>
+                                                <li class="col-12">
+                                                    <div class="product-box">
+                                                        <div class="product-caption">Không tìm thấy sản phẩm</div>
+                                                    </div>
+                                                </li>
                                             </c:if>
                                             <c:forEach var="book" items="${books}">
                                                 <li class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
@@ -177,7 +185,8 @@
                                                                         value=" ${book.price}" /> đ
                                                                 </ins></div>
                                                             <a href="/book/${book.id}"
-                                                                class="btn btn-outline-primary">Read More</a>
+                                                                class="btn btn-outline-primary">Read
+                                                                More</a>
                                                         </div>
                                                     </div>
                                                 </li>

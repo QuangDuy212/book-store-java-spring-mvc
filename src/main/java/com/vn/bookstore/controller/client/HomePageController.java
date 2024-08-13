@@ -159,7 +159,7 @@ public class HomePageController {
 
         // fetch data
         // book
-        Page<Book> bks = this.bookService.fetchAllBooks(pageable);
+        Page<Book> bks = this.bookService.fetchBooksWithSpec(pageable, bookCriteriaDTO);
 
         List<Book> books = bks.getContent().size() > 0 ? bks.getContent() : new ArrayList<Book>();
 
