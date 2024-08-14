@@ -1,6 +1,9 @@
 package com.vn.bookstore.service.specification;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.data.jpa.domain.Specification;
 
@@ -23,13 +26,20 @@ public class BookSpecs {
     }
 
     // case3
-    public static Specification<Book> matchCategory(String factory) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get(Book_.CATEGORY), factory);
+    public static Specification<Book> matchCategory(String category) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get(Book_.CATEGORY), category);
     }
 
     // case4
-    public static Specification<Book> matchListCategory(List<String> factory) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder.in(root.get(Book_.CATEGORY)).value(factory);
+    public static Specification<Book> matchListCategory(List<String> category) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.in(root.get(Book_.CATEGORY)).value(category);
+    }
+
+    public static Specification<Book> matchListCategoryId(List<String> category) {
+        List<Long> categoryId = new ArrayList<Long>();
+        for (String s : category)
+            categoryId.add(Long.valueOf(s));
+        return (root, query, criteriaBuilder) -> criteriaBuilder.in(root.get(Book_.ID)).value(categoryId);
     }
 
     // case5
