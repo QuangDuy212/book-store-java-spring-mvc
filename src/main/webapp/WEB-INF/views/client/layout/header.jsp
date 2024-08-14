@@ -129,26 +129,33 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="user-info-dropdown">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                    <span class="user-icon">
-                                        <img src="/images/avatar/${sessionScope.avatar}" alt=""
-                                            style="object-fit: cover; height: 100%; width: 100%;" />
-                                    </span>
-                                    <span class="user-name" style="width: 100px;">${sessionScope.fullName}</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <a class="dropdown-item" href="/profile"><i class="dw dw-user1"></i> Profile</a>
-                                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i>
-                                        Setting</a>
-                                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-                                    <form method="post" action="/logout">
-                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                        <button class="dropdown-item "><i class="dw dw-logout"></i>Log Out</button>
-                                    </form>
+                        <c:if test='${empty sessionScope.fullName}'>
+                            <div style="display: flex; justify-content: center; align-items: center;width: 150px;">
+                                <a href="/login">Đăng nhập</a>
+                            </div>
+                        </c:if>
+                        <c:if test='${not empty sessionScope.fullName}'>
+                            <div class="user-info-dropdown">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                        <span class="user-icon">
+                                            <img src="/images/avatar/${sessionScope.avatar}" alt=""
+                                                style="object-fit: cover; height: 100%; width: 100%;" />
+                                        </span>
+                                        <span class="user-name" style="width: 100px;">${sessionScope.fullName}</span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                        <a class="dropdown-item" href="/profile"><i class="dw dw-user1"></i> Profile</a>
+                                        <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i>
+                                            Setting</a>
+                                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                                        <form method="post" action="/logout">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                            <button class="dropdown-item "><i class="dw dw-logout"></i>Log Out</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:if>
                     </div>
                 </div>

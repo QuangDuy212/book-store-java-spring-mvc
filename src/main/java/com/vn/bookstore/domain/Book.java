@@ -53,6 +53,9 @@ public class Book {
     @OneToMany(mappedBy = "book")
     private List<OrderDetail> orderDetails;
 
+    @OneToMany(mappedBy = "book")
+    private List<CartDetail> cartDetails;
+
     public long getId() {
         return id;
     }
@@ -147,6 +150,14 @@ public class Book {
 
     public void setOrderDetails(List<OrderDetail> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    public List<CartDetail> getCartDetails() {
+        return cartDetails;
+    }
+
+    public void setCartDetails(List<CartDetail> cartDetails) {
+        this.cartDetails = cartDetails;
     }
 
 }
