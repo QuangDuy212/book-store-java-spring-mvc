@@ -9,9 +9,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.vn.bookstore.domain.Cart;
+import com.vn.bookstore.domain.CartDetail;
 import com.vn.bookstore.domain.Role;
 import com.vn.bookstore.domain.User;
 import com.vn.bookstore.domain.dto.RegisterDTO;
+import com.vn.bookstore.repository.CartDetailRepository;
+import com.vn.bookstore.repository.CartRepository;
 import com.vn.bookstore.repository.RoleRepository;
 import com.vn.bookstore.repository.UserRepository;
 
@@ -20,13 +24,18 @@ import jakarta.servlet.http.HttpSession;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final CartDetailRepository cartDetailRepository;
+    private final CartRepository cartRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;
     private final UploadService uploadService;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleService roleService,
+    public UserService(UserRepository userRepository, CartDetailRepository cartDetailRepository,
+            CartRepository cartRepository, PasswordEncoder passwordEncoder, RoleService roleService,
             UploadService uploadService) {
         this.userRepository = userRepository;
+        this.cartDetailRepository = cartDetailRepository;
+        this.cartRepository = cartRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
         this.uploadService = uploadService;
@@ -131,5 +140,10 @@ public class UserService {
         user.setGender("male");
         // save role
         this.handleCreateAUser(user);
+    }
+
+    public List<CartDetail> fetchCartDetailsByUser(User user) {
+        Cart cart = this.cartRepository.findByUser(user);
+        return this.cartDetailRepository.findByCart(cart);
     }
 }

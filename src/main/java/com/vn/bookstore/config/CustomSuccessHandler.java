@@ -3,6 +3,7 @@ package com.vn.bookstore.config;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,10 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.vn.bookstore.domain.Cart;
+import com.vn.bookstore.domain.CartDetail;
 import com.vn.bookstore.domain.User;
+import com.vn.bookstore.service.CartService;
 import com.vn.bookstore.service.UserService;
 
 import jakarta.servlet.ServletException;
@@ -56,11 +60,13 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
         // query db
         User user = this.userService.getUserByEmail(email);
+        List<CartDetail> cartDetails = this.userService.fetchCartDetailsByUser(user);
         if (user != null) {
             session.setAttribute("fullName", user.getFullName());
             session.setAttribute("avatar", user.getAvatar());
             session.setAttribute("id", user.getId());
             session.setAttribute("email", user.getEmail());
+            session.setAttribute("cartDetails", cartDetails);
         }
 
     }

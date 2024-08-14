@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-            <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+            <button%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
                 <!DOCTYPE html>
                 <html>
 
@@ -136,7 +136,12 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6 col-6">
-                                                            <a href="#" class="btn btn-primary btn-block">Add Cart</a>
+                                                            <form method="post" action="/add-cart/${book.id}">
+                                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                                    value="${_csrf.token}" />
+                                                                <button type="submit"
+                                                                    class="btn btn-primary btn-block">Add Cart</button>
+                                                            </form>
                                                         </div>
                                                         <div class="col-md-6 col-6">
                                                             <a href="#" class="btn btn-outline-primary btn-block">Buy

@@ -12,18 +12,32 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vn.bookstore.domain.Book;
+import com.vn.bookstore.domain.Cart;
+import com.vn.bookstore.domain.CartDetail;
+import com.vn.bookstore.domain.User;
 import com.vn.bookstore.domain.dto.BookCriteriaDTO;
 import com.vn.bookstore.repository.BookRepository;
+import com.vn.bookstore.repository.CartDetailRepository;
+import com.vn.bookstore.repository.CartRepository;
 import com.vn.bookstore.service.specification.BookSpecs;
+
+import jakarta.servlet.http.HttpSession;
 
 @Service
 public class BookService {
     private final BookRepository bookRepository;
+    private final CartRepository cartRepository;
+    private final CartDetailRepository cartDetailRepository;
     private final UploadService uploadService;
+    private final UserService userService;
 
-    public BookService(BookRepository bookRepository, UploadService uploadService) {
+    public BookService(BookRepository bookRepository, CartRepository cartRepository,
+            CartDetailRepository cartDetailRepository, UploadService uploadService, UserService userService) {
         this.bookRepository = bookRepository;
+        this.cartRepository = cartRepository;
+        this.cartDetailRepository = cartDetailRepository;
         this.uploadService = uploadService;
+        this.userService = userService;
     }
 
     public List<Book> fetchAllBooks() {
@@ -137,4 +151,47 @@ public class BookService {
         this.bookRepository.deleteById(id);
     }
 
+    public void handleAddBookToCart(String email, long id, HttpSession session, long quantity) {
+        User user = this.userService.getUserByEmail(email);
+        if (user != null) {
+            // check have cart ? no -> add new , yes -> sum + 1
+            Cart cart = this.cartRepository.findByUser(user);
+            if (cart == null) {
+                Cart otherCart = new Cart();
+                otherCart.setSum(0);
+                otherCart.setUser(user);
+                cart = this.cartRepository.save(otherCart);
+            }
+
+            // find cart_detail
+            // find book by id
+            Optional<Book> book = this.bookRepository.findById(id);
+            if (book.isPresent()) {
+                Book realBook = book.get();
+
+                CartDetail oldDetail = this.cartDetailRepository.findByCartAndBook(cart, realBook);
+                if (oldDetail == null) {
+                    CartDetail cd = new CartDetail();
+                    cd.setPrice(realBook.getPrice());
+                    cd.setBook(realBook);
+                    cd.setQuantity(quantity);
+                    cd.setCart(cart);
+                    this.cartDetailRepository.save(cd);
+
+                    int sum = cart.getSum() + 1;
+                    cart.setSum(sum);
+                    this.cartRepository.save(cart);
+
+                    session.setAttribute("sum", sum);
+                } else {
+                    long qt = oldDetail.getQuantity() + quantity;
+                    oldDetail.setQuantity(qt);
+                }
+
+                List<CartDetail> cartDetailsByCart = this.cartDetailRepository.findByCart(cart);
+                session.setAttribute("cartDetails", cartDetailsByCart);
+                System.out.println(session);
+            }
+        }
+    }
 }

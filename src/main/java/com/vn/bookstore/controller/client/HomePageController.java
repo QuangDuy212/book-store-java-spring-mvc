@@ -188,4 +188,15 @@ public class HomePageController {
         Optional<User> currentUser = this.userService.handleUpdateUserForClient(user, file, session);
         return "redirect:/profile";
     }
+
+    @PostMapping("/add-cart/{id}")
+    public String postAddCartClient(@PathVariable long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null)
+            return "redirect:/login";
+        long bookId = id;
+        String email = (String) session.getAttribute("email");
+        this.bookService.handleAddBookToCart(email, bookId, session, 1);
+        return "redirect:/book/{id}";
+    }
 }
