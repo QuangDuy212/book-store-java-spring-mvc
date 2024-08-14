@@ -13,43 +13,43 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.vn.bookstore.domain.Book;
 import com.vn.bookstore.domain.dto.BookCriteriaDTO;
-import com.vn.bookstore.repository.BookReposity;
+import com.vn.bookstore.repository.BookRepository;
 import com.vn.bookstore.service.specification.BookSpecs;
 
 @Service
 public class BookService {
-    private final BookReposity bookReposity;
+    private final BookRepository bookRepository;
     private final UploadService uploadService;
 
-    public BookService(BookReposity bookReposity, UploadService uploadService) {
-        this.bookReposity = bookReposity;
+    public BookService(BookRepository bookRepository, UploadService uploadService) {
+        this.bookRepository = bookRepository;
         this.uploadService = uploadService;
     }
 
     public List<Book> fetchAllBooks() {
-        return this.bookReposity.findAll();
+        return this.bookRepository.findAll();
     }
 
     public Page<Book> fetchAllBooks(Pageable pageable) {
-        return this.bookReposity.findAll(pageable);
+        return this.bookRepository.findAll(pageable);
     }
 
     public Optional<Book> getBookById(long id) {
-        return this.bookReposity.findById(id);
+        return this.bookRepository.findById(id);
     }
 
     public List<Book> getBooksByCategory(String category) {
-        return this.bookReposity.findByCategory(category);
+        return this.bookRepository.findByCategory(category);
     }
 
     public Page<Book> getBooksByCategory(Pageable pageable, String category) {
-        return this.bookReposity.findByCategory(pageable, category);
+        return this.bookRepository.findByCategory(pageable, category);
     }
 
     public Page<Book> fetchBooksWithSpec(Pageable page, BookCriteriaDTO bookCriteriaDTO) {
         if (bookCriteriaDTO.getCategory() == null
                 && bookCriteriaDTO.getPrice() == null) {
-            return this.bookReposity.findAll(page);
+            return this.bookRepository.findAll(page);
         }
         Specification<Book> combinedSpec = Specification.where(null);
 
@@ -61,7 +61,7 @@ public class BookService {
             Specification<Book> currentSpecs = this.buildPriceSpecification(bookCriteriaDTO.getPrice().get());
             combinedSpec = combinedSpec.and(currentSpecs);
         }
-        return this.bookReposity.findAll(combinedSpec, page);
+        return this.bookRepository.findAll(combinedSpec, page);
     }
 
     public Specification<Book> buildPriceSpecification(List<String> price) {
@@ -110,12 +110,12 @@ public class BookService {
             if (image != "") {
                 book.setImage(image);
             }
-            this.bookReposity.save(book);
+            this.bookRepository.save(book);
         }
     }
 
     public void handleUpdateABook(Book book, MultipartFile file) {
-        Optional<Book> currentBook = this.bookReposity.findById(book.getId());
+        Optional<Book> currentBook = this.bookRepository.findById(book.getId());
         currentBook.get().setMainText(book.getMainText());
         currentBook.get().setAuthor(book.getAuthor());
         currentBook.get().setPrice(book.getPrice());
@@ -130,11 +130,11 @@ public class BookService {
                 book.setImage(image);
             }
         }
-        this.bookReposity.save(book);
+        this.bookRepository.save(book);
     }
 
     public void handleDeleteBook(long id) {
-        this.bookReposity.deleteById(id);
+        this.bookRepository.deleteById(id);
     }
 
 }

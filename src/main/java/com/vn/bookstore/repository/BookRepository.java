@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.vn.bookstore.domain.Book;
 
 @Repository
-public interface BookReposity extends JpaRepository<Book, Long> {
+public interface BookRepository extends JpaRepository<Book, Long> {
     Page<Book> findAll(Specification specification, Pageable page);
 
     Optional<Book> findById(long id);
