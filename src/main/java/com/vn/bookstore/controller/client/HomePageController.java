@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.vn.bookstore.domain.Book;
 import com.vn.bookstore.domain.Book_;
+import com.vn.bookstore.domain.CartDetail;
 import com.vn.bookstore.domain.Category;
 import com.vn.bookstore.domain.User;
 import com.vn.bookstore.domain.dto.BookCriteriaDTO;
@@ -107,6 +108,7 @@ public class HomePageController {
 
         List<Book> sameBooks = bks.getContent().size() > 0 ? bks.getContent() : new ArrayList<Book>();
         if (book.isPresent()) {
+            model.addAttribute("newCartDetail", new CartDetail());
             model.addAttribute("book", book.get());
             model.addAttribute("sameBooks", sameBooks);
             model.addAttribute("currentPage", page);
@@ -190,13 +192,14 @@ public class HomePageController {
     }
 
     @PostMapping("/add-cart/{id}")
-    public String postAddCartClient(@PathVariable long id, HttpServletRequest request) {
+    public String postAddCartClient(Model model, @ModelAttribute("newCartDetail") CartDetail cartDetail,
+            @PathVariable long id, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null)
             return "redirect:/login";
         long bookId = id;
         String email = (String) session.getAttribute("email");
-        this.bookService.handleAddBookToCart(email, bookId, session, 1);
+        this.bookService.handleAddBookToCart(email, bookId, session, cartDetail.getQuantity());
         return "redirect:/book/{id}";
     }
 }
