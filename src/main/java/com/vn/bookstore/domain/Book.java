@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -48,6 +49,9 @@ public class Book {
     private String createdAt;
     private String updatedAt;
     private int __v;
+
+    @OneToMany(mappedBy = "book")
+    private List<OrderDetail> orderDetails;
 
     public long getId() {
         return id;
@@ -135,6 +139,14 @@ public class Book {
 
     public void setSold(long sold) {
         this.sold = sold;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
 }
