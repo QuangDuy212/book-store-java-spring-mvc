@@ -225,4 +225,14 @@ public class HomePageController {
         this.bookService.handleAddBookToCart(email, bookId, session, cartDetail.getQuantity());
         return "redirect:/book/{id}";
     }
+
+    @PostMapping("/delete-cart-book/{id}")
+    public String postDeleteBookCartClient(Model model, @PathVariable long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null)
+            return "redirect:/login";
+        long cartDetailId = id;
+        this.bookService.handleRemoveCartDetail(cartDetailId, session);
+        return "redirect:/cart";
+    }
 }

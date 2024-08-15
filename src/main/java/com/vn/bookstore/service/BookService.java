@@ -30,14 +30,17 @@ public class BookService {
     private final CartDetailRepository cartDetailRepository;
     private final UploadService uploadService;
     private final UserService userService;
+    private final CartDetailService cartDetailService;
 
     public BookService(BookRepository bookRepository, CartRepository cartRepository,
-            CartDetailRepository cartDetailRepository, UploadService uploadService, UserService userService) {
+            CartDetailRepository cartDetailRepository, UploadService uploadService, UserService userService,
+            CartDetailService cartDetailService) {
         this.bookRepository = bookRepository;
         this.cartRepository = cartRepository;
         this.cartDetailRepository = cartDetailRepository;
         this.uploadService = uploadService;
         this.userService = userService;
+        this.cartDetailService = cartDetailService;
     }
 
     public List<Book> fetchAllBooks() {
@@ -191,6 +194,28 @@ public class BookService {
                 List<CartDetail> cartDetailsByCart = this.cartDetailRepository.findByCart(cart);
                 session.setAttribute("cartDetails", cartDetailsByCart);
                 System.out.println(session);
+            }
+        }
+    }
+
+    public void handleRemoveCartDetail(long cartDetailId, HttpSession session) {
+        Optional<CartDetail> cartDetail = this.cartDetailRepository.findById(cartDetailId);
+        if (cartDetail.isPresent()) {
+            Cart cart = cartDetail.get().getCart();
+            long cartId = cart.getId();
+            this.cartDetailRepository.delete(cartDetail.get());
+            String email = (String) session.getAttribute("email");
+            User user = this.userService.getUserByEmail(email);
+            List<CartDetail> cartDetails = this.cartDetailService.fetchCartDetailsByCart(user.getCart());
+            session.setAttribute("cartDetails", cartDetails);
+            if (cart.getSum() > 1) {
+                int sum = cart.getSum() - 1;
+                cart.setSum(sum);
+                session.setAttribute("sum", sum);
+                this.cartRepository.save(cart);
+            } else {
+                session.setAttribute("sum", 0);
+                this.cartRepository.delete(cart);
             }
         }
     }

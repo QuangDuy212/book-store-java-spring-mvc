@@ -173,7 +173,7 @@
                                                                         </td>
                                                                         <td>
                                                                             <form method="post"
-                                                                                action="/delete-cart-product/${cartDetail.id}">
+                                                                                action="/delete-cart-book/${cartDetail.id}">
                                                                                 <input type="hidden"
                                                                                     name="${_csrf.parameterName}"
                                                                                     value="${_csrf.token}" />

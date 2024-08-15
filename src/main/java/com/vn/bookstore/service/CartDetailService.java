@@ -20,4 +20,7 @@ public class CartDetailService {
         return this.cartDetailRepository.findByCart(cart);
     }
 
+    public void deleteCartDetailById(long id) {
+        this.cartDetailRepository.deleteById(id);
+    }
 }
