@@ -11,38 +11,7 @@
                                 <div class="form-group mb-0">
                                     <i class="dw dw-search2 search-icon"></i>
                                     <input type="text" class="form-control search-input" placeholder="Search Here" />
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle no-arrow" href="#" role="button"
-                                            data-toggle="dropdown">
-                                            <i class="ion-arrow-down-c"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">From</label>
-                                                <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control form-control-sm form-control-line"
-                                                        type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">To</label>
-                                                <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control form-control-sm form-control-line"
-                                                        type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Subject</label>
-                                                <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control form-control-sm form-control-line"
-                                                        type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="text-right">
-                                                <button class="btn btn-primary">Search</button>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </form>
                         </div>
@@ -63,6 +32,11 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <div class="notification-list mx-h-350 customscroll">
+                                        <c:if test="${empty sessionScope.cartDetails}">
+                                            <div style="width: 100%; padding: 10px;">
+                                                Không có sản phẩm nào
+                                            </div>
+                                        </c:if>
                                         <ul>
                                             <c:forEach var="cartDetail" items="${sessionScope.cartDetails}">
                                                 <li>
@@ -77,7 +51,8 @@
                                         </ul>
                                     </div>
                                     <div style="border-top: 1px solid #ccc;">
-                                        <a href="/" class="btn btn-primary" style="margin-top: 12px;">Xem giỏ hàng</a>
+                                        <a href="/cart" class="btn btn-primary" style="margin-top: 12px;">Xem giỏ
+                                            hàng</a>
                                     </div>
                                 </div>
                             </div>

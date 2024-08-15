@@ -19,11 +19,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.vn.bookstore.domain.Book;
 import com.vn.bookstore.domain.Book_;
+import com.vn.bookstore.domain.Cart;
 import com.vn.bookstore.domain.CartDetail;
 import com.vn.bookstore.domain.Category;
 import com.vn.bookstore.domain.User;
 import com.vn.bookstore.domain.dto.BookCriteriaDTO;
 import com.vn.bookstore.service.BookService;
+import com.vn.bookstore.service.CartService;
 import com.vn.bookstore.service.CategoryService;
 import com.vn.bookstore.service.UserService;
 
@@ -34,12 +36,15 @@ import jakarta.servlet.http.HttpSession;
 public class HomePageController {
     private final BookService bookService;
     private final UserService userService;
+    private final CartService cartService;
     private final CategoryService categoryService;
     private final int totalBookInPage = 8;
 
-    public HomePageController(BookService bookService, UserService userService, CategoryService categoryService) {
+    public HomePageController(BookService bookService, UserService userService, CartService cartService,
+            CategoryService categoryService) {
         this.bookService = bookService;
         this.userService = userService;
+        this.cartService = cartService;
         this.categoryService = categoryService;
     }
 
@@ -180,6 +185,24 @@ public class HomePageController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", bks.getTotalPages());
         return "client/books/show";
+    }
+
+    @GetMapping("/cart")
+    public String getCartPage(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        long id = (long) session.getAttribute("id");
+        Optional<User> user = this.userService.getUserById(id);
+        Cart cart = this.cartService.getCartByUser(user.get());
+        List<CartDetail> cartDetails = cart != null ? this.userService.fetchCartDetailsByUser(user.get())
+                : new ArrayList<CartDetail>();
+        double totalPrice = 0;
+        for (CartDetail cd : cartDetails) {
+            totalPrice += cd.getPrice() * cd.getQuantity();
+        }
+        model.addAttribute("cartDetails", cartDetails);
+        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("cart", cart);
+        return "client/cart/show";
     }
 
     // Post Mapping
