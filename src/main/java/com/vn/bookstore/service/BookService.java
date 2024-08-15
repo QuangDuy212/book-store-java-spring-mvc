@@ -14,11 +14,15 @@ import org.springframework.web.multipart.MultipartFile;
 import com.vn.bookstore.domain.Book;
 import com.vn.bookstore.domain.Cart;
 import com.vn.bookstore.domain.CartDetail;
+import com.vn.bookstore.domain.Order;
+import com.vn.bookstore.domain.OrderDetail;
 import com.vn.bookstore.domain.User;
 import com.vn.bookstore.domain.dto.BookCriteriaDTO;
 import com.vn.bookstore.repository.BookRepository;
 import com.vn.bookstore.repository.CartDetailRepository;
 import com.vn.bookstore.repository.CartRepository;
+import com.vn.bookstore.repository.OrderDetailRepository;
+import com.vn.bookstore.repository.OrderRepository;
 import com.vn.bookstore.service.specification.BookSpecs;
 
 import jakarta.servlet.http.HttpSession;
@@ -28,19 +32,26 @@ public class BookService {
     private final BookRepository bookRepository;
     private final CartRepository cartRepository;
     private final CartDetailRepository cartDetailRepository;
+    private final OrderRepository orderRepository;
+    private final OrderDetailRepository orderDetailRepository;
     private final UploadService uploadService;
     private final UserService userService;
     private final CartDetailService cartDetailService;
+    private final CartService cartService;
 
     public BookService(BookRepository bookRepository, CartRepository cartRepository,
-            CartDetailRepository cartDetailRepository, UploadService uploadService, UserService userService,
-            CartDetailService cartDetailService) {
+            CartDetailRepository cartDetailRepository, OrderRepository orderRepository,
+            OrderDetailRepository orderDetailRepository, UploadService uploadService, UserService userService,
+            CartDetailService cartDetailService, CartService cartService) {
         this.bookRepository = bookRepository;
         this.cartRepository = cartRepository;
         this.cartDetailRepository = cartDetailRepository;
+        this.orderRepository = orderRepository;
+        this.orderDetailRepository = orderDetailRepository;
         this.uploadService = uploadService;
         this.userService = userService;
         this.cartDetailService = cartDetailService;
+        this.cartService = cartService;
     }
 
     public List<Book> fetchAllBooks() {
@@ -216,6 +227,66 @@ public class BookService {
             } else {
                 session.setAttribute("sum", 0);
                 this.cartRepository.delete(cart);
+            }
+        }
+    }
+
+    public void handlePlaceOrder(User user, HttpSession session, String receiverName, String receiverAddress,
+            String receiverPhone, double totalPrice) {
+        Order order = new Order();
+        order.setReciverAddress(receiverAddress);
+        order.setReciverName(receiverName);
+        order.setReciverPhone(receiverPhone);
+        order.setUser(user);
+        order.setTotalPrice(totalPrice);
+        order.setStatus("PENDING");
+        this.orderRepository.save(order);
+
+        // step 1: fetch cart by user
+        Cart cart = this.cartService.getCartByUser(user);
+        if (cart != null) {
+            List<CartDetail> cartDetails = this.cartDetailService.fetchCartDetailsByCart(cart);
+            if (cartDetails != null) {
+                for (CartDetail cd : cartDetails) {
+                    Optional<Book> bk = this.bookRepository.findById(cd.getBook().getId());
+                    if (bk.isPresent()) {
+                        long quantity = bk.get().getQuantity();
+                        long sold = bk.get().getSold();
+                        if (quantity >= cd.getQuantity()) {
+                            bk.get().setQuantity(quantity - cd.getQuantity());
+                            bk.get().setSold(quantity + cd.getQuantity());
+                            this.bookRepository.save(bk.get());
+                        }
+                    }
+                    OrderDetail orderDetail = new OrderDetail();
+                    orderDetail.setOrder(order);
+                    orderDetail.setBook(cd.getBook());
+                    orderDetail.setPrice(cd.getQuantity());
+                    orderDetail.setQuantity(cd.getQuantity());
+                    this.orderDetailRepository.save(orderDetail);
+                }
+
+                // step 2: detele cart and cart_detail
+                for (CartDetail cd : cartDetails) {
+                    this.cartDetailRepository.delete(cd);
+                }
+
+                this.cartRepository.delete(cart);
+
+                // step 3: update session
+                session.setAttribute("sum", 0);
+                session.setAttribute("cartDetails", new CartDetail());
+            }
+        }
+    }
+
+    public void handleUpdateCartBeforeCheckout(List<CartDetail> cartDetails) {
+        for (CartDetail cartDetail : cartDetails) {
+            Optional<CartDetail> cdOptional = this.cartDetailRepository.findById(cartDetail.getId());
+            if (cdOptional.isPresent()) {
+                CartDetail currentCartDetail = cdOptional.get();
+                currentCartDetail.setQuantity(cartDetail.getQuantity());
+                this.cartDetailRepository.save(currentCartDetail);
             }
         }
     }

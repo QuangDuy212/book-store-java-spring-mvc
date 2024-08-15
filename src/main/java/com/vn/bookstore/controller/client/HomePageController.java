@@ -205,6 +205,24 @@ public class HomePageController {
         return "client/cart/show";
     }
 
+    @GetMapping("/checkout")
+    public String getCheckoutPage(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        long id = (long) session.getAttribute("id");
+        Optional<User> user = this.userService.getUserById(id);
+        Cart cart = this.cartService.getCartByUser(user.get());
+        List<CartDetail> cartDetails = cart != null ? this.userService.fetchCartDetailsByUser(user.get())
+                : new ArrayList<CartDetail>();
+        double totalPrice = 0;
+        for (CartDetail cd : cartDetails) {
+            totalPrice += cd.getPrice() * cd.getQuantity();
+        }
+        model.addAttribute("cartDetails", cartDetails);
+        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("cart", cart);
+        return "client/cart/checkout";
+    }
+
     // Post Mapping
     @PostMapping("/profile")
     public String postUpdateUserClient(Model model, @ModelAttribute("newUser") User user,
@@ -234,5 +252,33 @@ public class HomePageController {
         long cartDetailId = id;
         this.bookService.handleRemoveCartDetail(cartDetailId, session);
         return "redirect:/cart";
+    }
+
+    @PostMapping("/confirm-checkout")
+    public String checkout(@ModelAttribute("cart") Cart cart) {
+        List<CartDetail> cartDetails = cart == null ? new ArrayList<CartDetail>() : cart.getCartDetails();
+        this.bookService.handleUpdateCartBeforeCheckout(cartDetails);
+        return "redirect:/checkout";
+    }
+
+    @PostMapping("/place-order")
+    public String postPlaceOrderClient(Model model, HttpServletRequest request,
+            @ModelAttribute("cart") Cart cart,
+            @RequestParam("receiverName") String receiverName,
+            @RequestParam("receiverAddress") String receiverAddress,
+            @RequestParam("receiverPhone") String receiverPhone) {
+        HttpSession session = request.getSession(false);
+        long id = (long) session.getAttribute("id");
+        Optional<User> user = this.userService.getUserById(id);
+        Cart currentCart = this.cartService.getCartByUser(user.get());
+        List<CartDetail> cartDetails = cart != null ? this.userService.fetchCartDetailsByUser(user.get())
+                : new ArrayList<CartDetail>();
+        double totalPrice = 0;
+        for (CartDetail cd : cartDetails) {
+            totalPrice += cd.getPrice() * cd.getQuantity();
+        }
+        this.bookService.handlePlaceOrder(user.get(), session, receiverName, receiverAddress, receiverPhone,
+                totalPrice);
+        return "redirect:/checkout";
     }
 }

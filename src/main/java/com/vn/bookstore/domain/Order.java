@@ -27,6 +27,11 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
 
+    private String reciverName;
+    private String reciverAddress;
+    private String reciverPhone;
+    private String status;
+
     public long getId() {
         return id;
     }
@@ -57,6 +62,38 @@ public class Order {
 
     public void setOrderDetails(List<OrderDetail> orderDetails) {
         this.orderDetails = orderDetails;
+    }
+
+    public String getReciverName() {
+        return reciverName;
+    }
+
+    public void setReciverName(String reciverName) {
+        this.reciverName = reciverName;
+    }
+
+    public String getReciverAddress() {
+        return reciverAddress;
+    }
+
+    public void setReciverAddress(String reciverAddress) {
+        this.reciverAddress = reciverAddress;
+    }
+
+    public String getReciverPhone() {
+        return reciverPhone;
+    }
+
+    public void setReciverPhone(String reciverPhone) {
+        this.reciverPhone = reciverPhone;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }
