@@ -142,7 +142,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-6 col-6">
                                                                     <button type="submit"
-                                                                        class="btn btn-primary btn-block">Add
+                                                                        class="btn btn-primary btn-block btnAddToCartDetail">Add
                                                                         Cart</button>
                                                                 </div>
                                                                 <div class="col-md-6 col-6">

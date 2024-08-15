@@ -268,7 +268,6 @@ public class HomePageController {
 
     @PostMapping("/place-order")
     public String postPlaceOrderClient(Model model, HttpServletRequest request,
-            @ModelAttribute("cart") Cart cart,
             @RequestParam("receiverName") String receiverName,
             @RequestParam("receiverAddress") String receiverAddress,
             @RequestParam("receiverPhone") String receiverPhone) {
@@ -276,7 +275,7 @@ public class HomePageController {
         long id = (long) session.getAttribute("id");
         Optional<User> user = this.userService.getUserById(id);
         Cart currentCart = this.cartService.getCartByUser(user.get());
-        List<CartDetail> cartDetails = cart != null ? this.userService.fetchCartDetailsByUser(user.get())
+        List<CartDetail> cartDetails = currentCart != null ? this.userService.fetchCartDetailsByUser(user.get())
                 : new ArrayList<CartDetail>();
         double totalPrice = 0;
         for (CartDetail cd : cartDetails) {

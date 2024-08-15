@@ -204,8 +204,7 @@ public class BookService {
                 }
 
                 List<CartDetail> cartDetailsByCart = this.cartDetailRepository.findByCart(cart);
-                session.setAttribute("cartDetails", cartDetailsByCart);
-                System.out.println(session);
+                session.setAttribute("listCart", cartDetailsByCart);
             }
         }
     }
@@ -219,7 +218,7 @@ public class BookService {
             String email = (String) session.getAttribute("email");
             User user = this.userService.getUserByEmail(email);
             List<CartDetail> cartDetails = this.cartDetailService.fetchCartDetailsByCart(user.getCart());
-            session.setAttribute("cartDetails", cartDetails);
+            session.setAttribute("listCart", cartDetails);
             if (cart.getSum() > 1) {
                 int sum = cart.getSum() - 1;
                 cart.setSum(sum);
@@ -262,21 +261,22 @@ public class BookService {
                     OrderDetail orderDetail = new OrderDetail();
                     orderDetail.setOrder(order);
                     orderDetail.setBook(cd.getBook());
-                    orderDetail.setPrice(cd.getQuantity());
+                    orderDetail.setPrice(cd.getPrice());
                     orderDetail.setQuantity(cd.getQuantity());
                     this.orderDetailRepository.save(orderDetail);
                 }
 
                 // step 2: detele cart and cart_detail
                 for (CartDetail cd : cartDetails) {
-                    this.cartDetailRepository.delete(cd);
+                    this.cartDetailRepository.deleteById(cd.getId());
                 }
 
                 this.cartRepository.delete(cart);
 
                 // step 3: update session
                 session.setAttribute("sum", 0);
-                session.setAttribute("cartDetails", new CartDetail());
+                session.removeAttribute("listCart");
+                System.out.println(session);
             }
         }
     }

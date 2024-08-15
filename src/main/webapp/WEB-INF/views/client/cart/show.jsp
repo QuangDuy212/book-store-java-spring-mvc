@@ -142,21 +142,21 @@
                                                                         <td>
                                                                             <div class="input-group quantity mt-4"
                                                                                 style="width: 100px;">
-
                                                                                 <div class="input-group-btn">
-                                                                                    <button
-                                                                                        class="btn btn-sm btn-minus">
+                                                                                    <button style="padding: 7px 8px;"
+                                                                                        class="btn btn-sm btn-minus ">
                                                                                         <i class="fa fa-minus"></i>
                                                                                     </button>
                                                                                 </div>
-                                                                                <input type="text"
+                                                                                <input type="text" style="width: 50px;"
                                                                                     class="form-control form-control-sm text-center border-0"
                                                                                     value="${cartDetail.quantity}"
                                                                                     data-cart-detail-id="${cartDetail.id}"
                                                                                     data-cart-detail-price="${cartDetail.price}"
                                                                                     data-cart-detail-index="${status.index}">
                                                                                 <div class="input-group-btn">
-                                                                                    <button class="btn btn-sm btn-plus">
+                                                                                    <button class="btn btn-sm btn-plus"
+                                                                                        style="padding: 7px 8px;">
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -245,24 +245,30 @@
                                                                 <input type="hidden" name="${_csrf.parameterName}"
                                                                     value="${_csrf.token}" />
                                                                 <div style="display: none;">
-                                                                    <c:forEach var="cartDetail"
-                                                                        items="${cart.cartDetails}" varStatus="status">
-                                                                        <div class="mb-3">
-                                                                            <div class="form-group">
-                                                                                <label>Id:</label>
-                                                                                <form:input class="form-control"
-                                                                                    type="text" value="${cartDetail.id}"
-                                                                                    path="cartDetails[${status.index}].id" />
+
+                                                                    <c:if test="${not empty cartDetails}">
+                                                                        <c:forEach var="cartDetail"
+                                                                            items="${cart.cartDetails}"
+                                                                            varStatus="status">
+                                                                            <div class="mb-3">
+                                                                                <div class="form-group">
+                                                                                    <label>Id:</label>
+                                                                                    <form:input class="form-control"
+                                                                                        type="text"
+                                                                                        value="${cartDetail.id}"
+                                                                                        path="cartDetails[${status.index}].id" />
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>Quantity:</label>
+                                                                                    <form:input class="form-control"
+                                                                                        type="text"
+                                                                                        value="${cartDetail.quantity}"
+                                                                                        path="cartDetails[${status.index}].quantity" />
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="form-group">
-                                                                                <label>Quantity:</label>
-                                                                                <form:input class="form-control"
-                                                                                    type="text"
-                                                                                    value="${cartDetail.quantity}"
-                                                                                    path="cartDetails[${status.index}].quantity" />
-                                                                            </div>
-                                                                        </div>
-                                                                    </c:forEach>
+                                                                        </c:forEach>
+
+                                                                    </c:if>
                                                                 </div>
                                                                 <c:if test="${empty cartDetails}">
                                                                     <button class="btn btn-primary" style="width: 100%;"
@@ -307,7 +313,6 @@
                         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                     <script src="/admin/vendors/scripts/core.js"></script>
-                    <script src="/client/js/main.js"></script>
                     <script src="/admin/vendors/scripts/script.min.js"></script>
                     <script src="/admin/vendors/scripts/process.js"></script>
                     <script src="/admin/vendors/scripts/layout-settings.js"></script>

@@ -190,111 +190,107 @@
                                             <div class="col-md-12 col-sm-12">
                                                 <div class=" row g-4 justify-content-start">
                                                     <div class="col-12 ">
-                                                        <c:if test="${not empty cartDetails}">
-                                                            <form:form action="/place-order" method="post"
-                                                                modelAttribute="cart">
-                                                                <input type="hidden" name="${_csrf.parameterName}"
-                                                                    value="${_csrf.token}" />
-                                                                <div class="row g-4 justify-content-start">
-                                                                    <div class="col-12 ">
-                                                                        <div>
-                                                                            <div
-                                                                                class="d-flex justify-content-center align-items-center mb-3">
-                                                                                <h5 style="font-size: 15px;">Thông Tin
-                                                                                    Người
-                                                                                    Nhận
-                                                                                </h5>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-12 form-group mb-3">
-                                                                                    <label style="font-size: 14px;">Tên
-                                                                                        người nhận</label>
-                                                                                    <input class="form-control"
-                                                                                        name="receiverName" required />
-                                                                                </div>
-                                                                                <div class="col-12 form-group mb-3">
-                                                                                    <label style="font-size: 14px;">Địa
-                                                                                        chỉ người nhận</label>
-                                                                                    <input class="form-control"
-                                                                                        name="receiverAddress"
-                                                                                        required />
-                                                                                </div>
-                                                                                <div class="col-12 form-group mb-3">
-                                                                                    <label style="font-size: 14px;">Số
-                                                                                        điện thoại</label>
-                                                                                    <input class="form-control"
-                                                                                        name="receiverPhone" required />
-                                                                                </div>
-                                                                                <div class="col-12 form-group mb-3">
-                                                                                    <i
-                                                                                        class="icon-copy bi bi-arrow-90deg-left"></i>
-                                                                                    <a href="/cart">Quay lại
-                                                                                        giỏ
-                                                                                        hàng</a>
-                                                                                </div>
-                                                                            </div>
+                                                        <form:form action="/place-order" method="post"
+                                                            modelAttribute="cart">
+                                                            <input type="hidden" name="${_csrf.parameterName}"
+                                                                value="${_csrf.token}" />
+                                                            <div class="row g-4 justify-content-start">
+                                                                <div class="col-12 ">
+                                                                    <div>
+                                                                        <div
+                                                                            class="d-flex justify-content-center align-items-center mb-3">
+                                                                            <h5 style="font-size: 15px;">Thông Tin
+                                                                                Người
+                                                                                Nhận
+                                                                            </h5>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-12 ">
-                                                                        <div>
-                                                                            <div
-                                                                                style="padding-top: 10px; border-top: 1px solid #ccc;">
-                                                                                <h1 class="display-6 mb-4 d-flex justify-content-center align-items-center mb-3"
-                                                                                    style="font-size: 15px;">Thông Tin
-                                                                                    Thanh
-                                                                                    Toán
-                                                                                </h1>
-
-                                                                                <div
-                                                                                    class="d-flex justify-content-between">
-                                                                                    <h5 class="mb-0 me-4"
-                                                                                        style="font-size: 14px;">Phí vận
-                                                                                        chuyển
-                                                                                    </h5>
-                                                                                    <div class="">
-                                                                                        <p class="mb-0"
-                                                                                            style="font-size: 14px;">0 đ
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="mt-3 d-flex justify-content-between">
-                                                                                    <h5 class="mb-0 me-4"
-                                                                                        style="font-size: 14px;">Hình
-                                                                                        thức</h5>
-                                                                                    <div class="">
-                                                                                        <p class="mb-0"
-                                                                                            style="font-size: 14px;">
-                                                                                            Thanh toán khi
-                                                                                            nhận hàng (COD)</p>
-                                                                                    </div>
-                                                                                </div>
+                                                                        <div class="row">
+                                                                            <div class="col-12 form-group mb-3">
+                                                                                <label style="font-size: 14px;">Tên
+                                                                                    người nhận</label>
+                                                                                <input class="form-control"
+                                                                                    name="receiverName" required />
                                                                             </div>
-                                                                            <div
-                                                                                class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                                                                                <h5 class="mb-0 ps-4 me-4"
-                                                                                    style="font-size: 14px;">Tổng số
-                                                                                    tiền
-                                                                                </h5>
-                                                                                <p class="mb-0 pe-4"
-                                                                                    data-cart-total-price="${totalPrice}"
-                                                                                    style="font-size: 14px;">
-                                                                                    <fmt:formatNumber type="number"
-                                                                                        value="${totalPrice}" /> đ
-                                                                                </p>
+                                                                            <div class="col-12 form-group mb-3">
+                                                                                <label style="font-size: 14px;">Địa
+                                                                                    chỉ người nhận</label>
+                                                                                <input class="form-control"
+                                                                                    name="receiverAddress" required />
                                                                             </div>
-                                                                            <div>
-                                                                                <button class="btn btn-primary"
-                                                                                    style="width: 100%;">
-                                                                                    Xác nhận thanh toán
-                                                                                </button>
+                                                                            <div class="col-12 form-group mb-3">
+                                                                                <label style="font-size: 14px;">Số
+                                                                                    điện thoại</label>
+                                                                                <input class="form-control"
+                                                                                    name="receiverPhone" required />
                                                                             </div>
-
+                                                                            <div class="col-12 form-group mb-3">
+                                                                                <i
+                                                                                    class="icon-copy bi bi-arrow-90deg-left"></i>
+                                                                                <a href="/cart">Quay lại
+                                                                                    giỏ
+                                                                                    hàng</a>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </form:form>
-                                                        </c:if>
+                                                                <div class="col-12 ">
+                                                                    <div>
+                                                                        <div
+                                                                            style="padding-top: 10px; border-top: 1px solid #ccc;">
+                                                                            <h1 class="display-6 mb-4 d-flex justify-content-center align-items-center mb-3"
+                                                                                style="font-size: 15px;">Thông Tin
+                                                                                Thanh
+                                                                                Toán
+                                                                            </h1>
+
+                                                                            <div class="d-flex justify-content-between">
+                                                                                <h5 class="mb-0 me-4"
+                                                                                    style="font-size: 14px;">Phí vận
+                                                                                    chuyển
+                                                                                </h5>
+                                                                                <div class="">
+                                                                                    <p class="mb-0"
+                                                                                        style="font-size: 14px;">0 đ
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div
+                                                                                class="mt-3 d-flex justify-content-between">
+                                                                                <h5 class="mb-0 me-4"
+                                                                                    style="font-size: 14px;">Hình
+                                                                                    thức</h5>
+                                                                                <div class="">
+                                                                                    <p class="mb-0"
+                                                                                        style="font-size: 14px;">
+                                                                                        Thanh toán khi
+                                                                                        nhận hàng (COD)</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                                                                            <h5 class="mb-0 ps-4 me-4"
+                                                                                style="font-size: 14px;">Tổng số
+                                                                                tiền
+                                                                            </h5>
+                                                                            <p class="mb-0 pe-4"
+                                                                                data-cart-total-price="${totalPrice}"
+                                                                                style="font-size: 14px;">
+                                                                                <fmt:formatNumber type="number"
+                                                                                    value="${totalPrice}" /> đ
+                                                                            </p>
+                                                                        </div>
+                                                                        <div>
+                                                                            <button class="btn btn-primary"
+                                                                                style="width: 100%;">
+                                                                                Xác nhận thanh toán
+                                                                            </button>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form:form>
                                                     </div>
                                                 </div>
                                             </div>

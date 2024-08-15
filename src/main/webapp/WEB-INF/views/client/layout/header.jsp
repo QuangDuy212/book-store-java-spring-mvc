@@ -32,22 +32,24 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <div class="notification-list mx-h-350 customscroll">
-                                        <c:if test="${empty sessionScope.cartDetails}">
+                                        <c:if test="${empty sessionScope.listCart}">
                                             <div style="width: 100%; padding: 10px;">
                                                 Không có sản phẩm nào
                                             </div>
                                         </c:if>
                                         <ul>
-                                            <c:forEach var="cartDetail" items="${sessionScope.cartDetails}">
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="/images/book/${cartDetail.book.image}" alt="" />
-                                                        <p>
-                                                            ${cartDetail.book.mainText}
-                                                        </p>
-                                                    </a>
-                                                </li>
-                                            </c:forEach>
+                                            <c:if test="${not empty sessionScope.listCart}">
+                                                <c:forEach var="detail" items="${sessionScope.listCart}">
+                                                    <li>
+                                                        <a href="#">
+                                                            <img src="/images/book/${detail.book.image}" alt="" />
+                                                            <p>
+                                                                ${detail.book.mainText}
+                                                            </p>
+                                                        </a>
+                                                    </li>
+                                                </c:forEach>
+                                            </c:if>
                                         </ul>
                                     </div>
                                     <div style="border-top: 1px solid #ccc;">
