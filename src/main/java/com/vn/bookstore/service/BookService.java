@@ -200,6 +200,7 @@ public class BookService {
                 } else {
                     long qt = oldDetail.getQuantity() + quantity;
                     oldDetail.setQuantity(qt);
+                    this.cartDetailRepository.save(oldDetail);
                 }
 
                 List<CartDetail> cartDetailsByCart = this.cartDetailRepository.findByCart(cart);

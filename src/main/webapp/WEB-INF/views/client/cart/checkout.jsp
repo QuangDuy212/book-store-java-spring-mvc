@@ -83,7 +83,7 @@
                                                     <a href="/">Home</a>
                                                 </li>
                                                 <li class="breadcrumb-item">
-                                                    <a href="/"> Chi tiết giỏ hàng</a>
+                                                    <a href="/cart"> Chi tiết giỏ hàng</a>
                                                 </li>
                                                 <li class="breadcrumb-item active" aria-current="page">
                                                     Xác nhận

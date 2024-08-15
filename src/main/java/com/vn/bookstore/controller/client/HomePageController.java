@@ -223,6 +223,11 @@ public class HomePageController {
         return "client/cart/checkout";
     }
 
+    @GetMapping("/thanks")
+    public String getThanksPage(Model model) {
+        return "client/cart/thanks";
+    }
+
     // Post Mapping
     @PostMapping("/profile")
     public String postUpdateUserClient(Model model, @ModelAttribute("newUser") User user,
@@ -279,6 +284,6 @@ public class HomePageController {
         }
         this.bookService.handlePlaceOrder(user.get(), session, receiverName, receiverAddress, receiverPhone,
                 totalPrice);
-        return "redirect:/checkout";
+        return "redirect:/thanks";
     }
 }
