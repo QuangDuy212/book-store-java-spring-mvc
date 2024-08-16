@@ -11,7 +11,7 @@
                     <div class="modal-body text-center font-18">
                         <h3 class="mb-20">Form Submitted!</h3>
                         <div class="mb-30 text-center">
-                            <img src="/admin/vendors/images/success.png" />
+                            <img src="/adminRes/vendors/images/success.png" />
                         </div>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                         eiusmod

@@ -30,11 +30,11 @@
                         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
                         rel="stylesheet" />
                     <!-- CSS -->
-                    <link rel="stylesheet" type="text/css" href="/admin/vendors/styles/core.css" />
-                    <link rel="stylesheet" type="text/css" href="/admin/vendors/styles/icon-font.min.css" />
+                    <link rel="stylesheet" type="text/css" href="/adminRes/vendors/styles/core.css" />
+                    <link rel="stylesheet" type="text/css" href="/adminRes/vendors/styles/icon-font.min.css" />
                     <link rel="stylesheet" type="text/css"
-                        href="/admin/src/plugins/jvectormap/jquery-jvectormap-2.0.3.css" />
-                    <link rel="stylesheet" type="text/css" href="/admin/vendors/styles/style.css" />
+                        href="/adminRes/src/plugins/jvectormap/jquery-jvectormap-2.0.3.css" />
+                    <link rel="stylesheet" type="text/css" href="/adminRes/vendors/styles/style.css" />
                     <!-- Customized Bootstrap Stylesheet -->
                     <!-- Template Stylesheet -->
                     <link href="/client/css/style.css" rel="stylesheet">
@@ -208,23 +208,23 @@
                     <!-- welcome modal end -->
                     <!-- js -->
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-                    <script src="/admin/vendors/scripts/core.js"></script>
-                    <script src="/admin/vendors/scripts/script.min.js"></script>
-                    <script src="/admin/vendors/scripts/script.js"></script>
-                    <script src="/admin/vendors/scripts/process.js"></script>
-                    <script src="/admin/vendors/scripts/layout-settings.js"></script>
-                    <script src="/admin/src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
-                    <script src="/admin/src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
-                    <script src="/admin/src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
-                    <script src="/admin/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-                    <script src="/admin/vendors/scripts/dashboard2.js"></script>
+                    <script src="/adminRes/vendors/scripts/core.js"></script>
+                    <script src="/adminRes/vendors/scripts/script.min.js"></script>
+                    <script src="/adminRes/vendors/scripts/script.js"></script>
+                    <script src="/adminRes/vendors/scripts/process.js"></script>
+                    <script src="/adminRes/vendors/scripts/layout-settings.js"></script>
+                    <script src="/adminRes/src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
+                    <script src="/adminRes/src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
+                    <script src="/adminRes/src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
+                    <script src="/adminRes/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+                    <script src="/adminRes/vendors/scripts/dashboard2.js"></script>
                     <!-- Google Tag Manager (noscript) -->
                     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
                             style="display: none; visibility: hidden"></iframe></noscript>
                     <!-- End Google Tag Manager (noscript) -->
 
                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-                    <script src="/admin/src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+                    <script src="/adminRes/src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
                 </body>
 
                 </html>
