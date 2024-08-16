@@ -29,6 +29,12 @@
                             </a>
                         </li>
 
+                        <li>
+                            <a href="/order-history" class="dropdown-toggle no-arrow">
+                                <span class="micon bi bi-table"></span><span class="mtext">Orders history</span>
+                            </a>
+                        </li>
+
                 </div>
             </div>
         </div>

@@ -101,6 +101,9 @@
                                             <div class="col-md-12 col-sm-12">
                                                 Cảm ơn vì đã tin tưởng mua hàng!
                                             </div>
+                                            <div class="col-md-12 col-sm-12" style="margin-top: 20px;">
+                                                <a href="/" class="btn btn-primary">Trang chủ</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

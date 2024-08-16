@@ -228,6 +228,11 @@ public class HomePageController {
         return "client/cart/thanks";
     }
 
+    @GetMapping("/order-history")
+    public String getOrderHistoryPage(Model model) {
+        return "client/orderHistory/show";
+    }
+
     // Post Mapping
     @PostMapping("/profile")
     public String postUpdateUserClient(Model model, @ModelAttribute("newUser") User user,
