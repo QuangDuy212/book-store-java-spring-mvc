@@ -17,6 +17,10 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
+    public long countOrder() {
+        return this.orderRepository.count();
+    }
+
     public List<Order> fetchAllOrders() {
         return this.orderRepository.findAll();
     }

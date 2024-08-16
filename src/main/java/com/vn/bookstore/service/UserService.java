@@ -41,6 +41,10 @@ public class UserService {
         this.uploadService = uploadService;
     }
 
+    public long countUser() {
+        return this.userRepository.count();
+    }
+
     public Page<User> fetchAllUsers(Pageable pageable) {
         return this.userRepository.findAll(pageable);
     }

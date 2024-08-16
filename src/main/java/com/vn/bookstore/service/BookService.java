@@ -54,6 +54,10 @@ public class BookService {
         this.cartService = cartService;
     }
 
+    public long countBook() {
+        return this.bookRepository.count();
+    }
+
     public List<Book> fetchAllBooks() {
         return this.bookRepository.findAll();
     }

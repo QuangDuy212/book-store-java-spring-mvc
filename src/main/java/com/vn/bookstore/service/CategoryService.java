@@ -15,6 +15,10 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
+    public long countCategory() {
+        return this.categoryRepository.count();
+    }
+
     public List<Category> fetchAllCategory() {
         return this.categoryRepository.findAll();
     }
