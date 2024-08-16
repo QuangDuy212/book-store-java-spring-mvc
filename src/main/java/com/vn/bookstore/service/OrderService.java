@@ -28,4 +28,12 @@ public class OrderService {
     public Optional<Order> fetchOrderById(Long id) {
         return this.orderRepository.findById(id);
     }
+
+    public void handleUpdateOrder(Order order, long id) {
+        Optional<Order> currentOrder = this.fetchOrderById(id);
+        if (currentOrder.isPresent()) {
+            currentOrder.get().setStatus(order.getStatus());
+            this.orderRepository.save(currentOrder.get());
+        }
+    }
 }

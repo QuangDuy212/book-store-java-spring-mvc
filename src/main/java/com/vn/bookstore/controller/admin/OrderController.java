@@ -6,10 +6,14 @@ import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.vn.bookstore.domain.Book;
 import com.vn.bookstore.domain.Order;
 import com.vn.bookstore.domain.OrderDetail;
+import com.vn.bookstore.domain.User;
 import com.vn.bookstore.service.OrderDetailService;
 import com.vn.bookstore.service.OrderService;
 
@@ -46,5 +50,23 @@ public class OrderController {
             return "redirect:/admin/orders";
         }
         return "admin/orders/detail";
+    }
+
+    @GetMapping("/admin/orders/update/{id}")
+    public String getOrdersUpdateAdminPage(Model model, @PathVariable long id) {
+        Optional<Order> order = this.orderService.fetchOrderById(id);
+        if (order.isPresent()) {
+            model.addAttribute("id", id);
+            model.addAttribute("order", order);
+        } else {
+            return "redirect:/admin/orders";
+        }
+        return "admin/orders/update";
+    }
+
+    @PostMapping("/admin/orders/update")
+    public String postUpdateOrdersAdminPage(Model model, @ModelAttribute("order") Order order) {
+        this.orderService.handleUpdateOrder(order, order.getId());
+        return "redirect:/admin/orders";
     }
 }
