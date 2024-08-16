@@ -160,10 +160,29 @@ jQuery(document).ready(function () {
 	// });
 
 	// sidebar menu Active Class
-	$("#accordion-menu").each(function () {
-		var vars = window.location.href.split("/").pop();
+	$("#accordion-menu-admin").each(function () {
+		var vars = window.location.href.split("/");
+		var urlStr;
+		if (vars.length == 4) {
+			urlStr = `/${vars.pop()}`
+		} else if (vars.length == 5) {
+			urlStr = `/${vars[vars.length - 2]}/${vars[vars.length - 1]}`
+		}
 		$(this)
-			.find('a[href="' + vars + '"]')
+			.find('a[href="' + urlStr + '"]')
+			.addClass("active");
+	});
+
+	$("#accordion-menu-user").each(function () {
+		var vars = window.location.href.split("/");
+		var urlStr;
+		if (vars.length == 4) {
+			urlStr = `/${vars.pop()}`
+		} else if (vars.length == 5) {
+			urlStr = `/${vars[vars.length - 2]}/${vars[vars.length - 1]}`
+		}
+		$(this)
+			.find('a[href="' + urlStr + '"]')
 			.addClass("active");
 	});
 

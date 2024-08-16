@@ -161,7 +161,7 @@ jQuery(document).ready(function () {
 
 	// sidebar menu Active Class
 	$("#accordion-menu").each(function () {
-		var vars = window.location.href.split("/").pop();
+		var vars = window.location.href;
 		$(this)
 			.find('a[href="' + vars + '"]')
 			.addClass("active");

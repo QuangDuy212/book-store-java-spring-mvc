@@ -12,7 +12,7 @@
             </div>
             <div class="menu-block customscroll">
                 <div class="sidebar-menu">
-                    <ul id="accordion-menu">
+                    <ul id="accordion-menu-user">
                         <li>
                             <a href="/" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-house"></span><span class="mtext">Home</span>
