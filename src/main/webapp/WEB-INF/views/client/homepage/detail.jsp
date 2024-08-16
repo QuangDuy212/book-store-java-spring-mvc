@@ -215,6 +215,7 @@
                         <!-- js -->
                         <script src="/admin/vendors/scripts/core.js"></script>
                         <script src="/admin/vendors/scripts/script.min.js"></script>
+                        <script src="/admin/vendors/scripts/script.js"></script>
                         <script src="/admin/vendors/scripts/process.js"></script>
                         <script src="/admin/vendors/scripts/layout-settings.js"></script>
                         <script src="/admin/src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
