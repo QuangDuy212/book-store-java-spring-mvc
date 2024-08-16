@@ -151,14 +151,14 @@ public class BookService {
         currentBook.get().setQuantity(book.getQuantity());
         currentBook.get().setCategory(book.getCategory());
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-        book.setUpdatedAt(timeStamp);
+        currentBook.get().setUpdatedAt(timeStamp);
         if (!file.isEmpty()) {
             String image = this.uploadService.handleSaveUploadFile(file, "book");
             if (image != "") {
-                book.setImage(image);
+                currentBook.get().setImage(image);
             }
         }
-        this.bookRepository.save(book);
+        this.bookRepository.save(currentBook.get());
     }
 
     public void handleDeleteBook(long id) {
