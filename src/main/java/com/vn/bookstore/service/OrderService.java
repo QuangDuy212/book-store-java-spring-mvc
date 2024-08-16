@@ -17,6 +17,10 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
+    public List<Order> fetchAllOrders() {
+        return this.orderRepository.findAll();
+    }
+
     public List<Order> fetchOrderByUser(User user) {
         return this.orderRepository.findByUser(user);
     }

@@ -76,15 +76,15 @@
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12">
                                         <div class="title">
-                                            <h4>Orders history</h4>
+                                            <h4>Orders</h4>
                                         </div>
                                         <nav aria-label="breadcrumb" role="navigation">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item">
-                                                    <a href="/">Home</a>
+                                                    <a href="/admin">Home</a>
                                                 </li>
                                                 <li class="breadcrumb-item active" aria-current="page">
-                                                    Orders history
+                                                    Orders
                                                 </li>
                                             </ol>
                                         </nav>
@@ -104,10 +104,11 @@
                                             <thead>
                                                 <tr>
                                                     <th class="table-plus">Date</th>
+                                                    <th>User</th>
                                                     <th>Phone</th>
                                                     <th>Price</th>
                                                     <th>Status</th>
-                                                    <th>View</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -126,6 +127,9 @@
 
                                                             </td>
                                                             <td>
+                                                                ${order.user.email}
+                                                            </td>
+                                                            <td>
                                                                 ${order.reciverPhone}
                                                             </td>
                                                             <td>
@@ -137,8 +141,14 @@
                                                                 ${order.status}
                                                             </td>
                                                             <td>
-                                                                <a href="/order-history/${order.id}"
-                                                                    class="btn btn-primary">Detail</a>
+                                                                <div class="table-actions">
+                                                                    <a href="/admin/orders/update/${order.id}"
+                                                                        data-color="#265ed7"><i
+                                                                            class="icon-copy dw dw-edit2"></i></a>
+                                                                    <a href="/admin/orders/${order.id}"
+                                                                        data-color="#e95959"><i
+                                                                            class="icon-copy bi bi-eye"></i></a>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>

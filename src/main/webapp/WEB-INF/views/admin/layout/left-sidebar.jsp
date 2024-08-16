@@ -34,7 +34,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="calendar.html" class="dropdown-toggle no-arrow">
+                            <a href="/admin/orders" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-calendar4-week"></span><span class="mtext">Orders</span>
                             </a>
                         </li>
