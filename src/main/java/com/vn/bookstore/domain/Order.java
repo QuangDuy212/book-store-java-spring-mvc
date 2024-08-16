@@ -31,6 +31,7 @@ public class Order {
     private String reciverAddress;
     private String reciverPhone;
     private String status;
+    private String createdAt;
 
     public long getId() {
         return id;
@@ -94,6 +95,14 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
 }

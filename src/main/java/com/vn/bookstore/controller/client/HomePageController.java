@@ -22,11 +22,15 @@ import com.vn.bookstore.domain.Book_;
 import com.vn.bookstore.domain.Cart;
 import com.vn.bookstore.domain.CartDetail;
 import com.vn.bookstore.domain.Category;
+import com.vn.bookstore.domain.Order;
+import com.vn.bookstore.domain.OrderDetail;
 import com.vn.bookstore.domain.User;
 import com.vn.bookstore.domain.dto.BookCriteriaDTO;
 import com.vn.bookstore.service.BookService;
 import com.vn.bookstore.service.CartService;
 import com.vn.bookstore.service.CategoryService;
+import com.vn.bookstore.service.OrderDetailService;
+import com.vn.bookstore.service.OrderService;
 import com.vn.bookstore.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,14 +42,18 @@ public class HomePageController {
     private final UserService userService;
     private final CartService cartService;
     private final CategoryService categoryService;
+    private final OrderDetailService orderDetailService;
+    private final OrderService orderService;
     private final int totalBookInPage = 8;
 
     public HomePageController(BookService bookService, UserService userService, CartService cartService,
-            CategoryService categoryService) {
+            CategoryService categoryService, OrderDetailService orderDetailService, OrderService orderService) {
         this.bookService = bookService;
         this.userService = userService;
         this.cartService = cartService;
         this.categoryService = categoryService;
+        this.orderDetailService = orderDetailService;
+        this.orderService = orderService;
     }
 
     // Get Mapping
@@ -229,7 +237,12 @@ public class HomePageController {
     }
 
     @GetMapping("/order-history")
-    public String getOrderHistoryPage(Model model) {
+    public String getOrderHistoryPage(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        long id = (long) session.getAttribute("id");
+        Optional<User> user = this.userService.getUserById(id);
+        List<Order> listOrders = this.orderService.fetchOrderByUser(user.get());
+        model.addAttribute("listOrders", listOrders);
         return "client/orderHistory/show";
     }
 

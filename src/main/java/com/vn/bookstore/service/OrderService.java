@@ -1,7 +1,11 @@
 package com.vn.bookstore.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.vn.bookstore.domain.Order;
+import com.vn.bookstore.domain.User;
 import com.vn.bookstore.repository.OrderRepository;
 
 @Service
@@ -12,4 +16,7 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
+    public List<Order> fetchOrderByUser(User user) {
+        return this.orderRepository.findByUser(user);
+    }
 }
