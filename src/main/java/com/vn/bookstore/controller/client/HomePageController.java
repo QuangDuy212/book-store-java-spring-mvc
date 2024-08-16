@@ -246,6 +246,27 @@ public class HomePageController {
         return "client/orderHistory/show";
     }
 
+    @GetMapping("/order-history/{id}")
+    public String getOrderHistoryDetailPage(Model model, HttpServletRequest request, @PathVariable long id) {
+        HttpSession session = request.getSession(false);
+        long userId = (long) session.getAttribute("id");
+        Optional<User> user = this.userService.getUserById(userId);
+        Optional<Order> order = this.orderService.fetchOrderById(id);
+        if (order.isPresent()) {
+            List<OrderDetail> listOrderDetails = this.orderDetailService.fetchOrderDetailsByOrder(order.get());
+
+            double totalPrice = 0;
+            for (OrderDetail od : listOrderDetails) {
+                totalPrice += od.getPrice();
+            }
+            model.addAttribute("listOrderDetails", listOrderDetails);
+            model.addAttribute("totalPrice", totalPrice);
+        } else {
+            return "redirect:/order-history";
+        }
+        return "client/orderHistory/detail";
+    }
+
     // Post Mapping
     @PostMapping("/profile")
     public String postUpdateUserClient(Model model, @ModelAttribute("newUser") User user,

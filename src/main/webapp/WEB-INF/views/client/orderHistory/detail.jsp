@@ -8,7 +8,7 @@
                 <head>
                     <!-- Basic Page Info -->
                     <meta charset="utf-8" />
-                    <title>Order history | Book store</title>
+                    <title>Order history detail | Book store</title>
 
                     <!-- Site favicon -->
                     <link rel="apple-touch-icon" sizes="180x180" href="/admin/vendors/images/apple-touch-icon.png" />
@@ -76,15 +76,18 @@
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12">
                                         <div class="title">
-                                            <h4>Orders history</h4>
+                                            <h4>Orders history detail</h4>
                                         </div>
                                         <nav aria-label="breadcrumb" role="navigation">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item">
                                                     <a href="/">Home</a>
                                                 </li>
+                                                <li class="breadcrumb-item">
+                                                    <a href="/order-history">Order history</a>
+                                                </li>
                                                 <li class="breadcrumb-item active" aria-current="page">
-                                                    Orders history
+                                                    Orders history detail
                                                 </li>
                                             </ol>
                                         </nav>
@@ -97,45 +100,62 @@
                                         <div class="h5 pd-20 mb-0"
                                             style="display: flex; justify-content: space-between;">
                                             <span>
-                                                Order history
+                                                Order history detail
                                             </span>
                                         </div>
-                                        <table class="data-table table stripe hover nowrap responsive">
-                                            <thead>
-                                                <tr>
-                                                    <th class="table-plus">Date</th>
-                                                    <th>Phone</th>
-                                                    <th>Price</th>
-                                                    <th>Status</th>
-                                                    <th>View</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach var="order" items="${listOrders}">
+                                        <div class="table-responsive">
+                                            <table class="data-table table nowrap">
+                                                <thead>
                                                     <tr>
-                                                        <td class="table-plus">
-                                                            ${order.createdAt}
+                                                        <th class="table-plus">Image</th>
+                                                        <th>Info</th>
+                                                        <th>Quantity</th>
+                                                        <th>Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach var="order" items="${listOrderDetails}">
+                                                        <tr>
+                                                            <td class="table-plus">
+                                                                <div
+                                                                    style="width: 60px; height: 60px; border-radius: 10px; overflow: hidden;border: 1px solid #ccc; ">
+                                                                    <img src="/images/book/${order.book.image}"
+                                                                        style="width: 100%; height: 100%; object-fit: contain; display: block;" />
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="txt">
+                                                                    <a href="/book/${order.book.id}">
+                                                                        ${order.book.mainText}
+                                                                    </a>
+                                                                    <div>
+                                                                        <fmt:formatNumber type="number"
+                                                                            value=" ${order.book.price}" /> đ
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                ${order.quantity}
+                                                            </td>
+                                                            <td>
+                                                                <fmt:formatNumber type="number"
+                                                                    value="${order.price}" /> đ
 
-                                                        </td>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Total price</td>
                                                         <td>
-                                                            ${order.reciverPhone}
-                                                        </td>
-                                                        <td>
-                                                            <fmt:formatNumber type="number"
-                                                                value=" ${order.totalPrice}" /> đ
+                                                            <fmt:formatNumber type="number" value="${totalPrice}" /> đ
 
-                                                        </td>
-                                                        <td>
-                                                            ${order.status}
-                                                        </td>
-                                                        <td>
-                                                            <a href="/order-history/${order.id}"
-                                                                class="btn btn-primary">Detail</a>
                                                         </td>
                                                     </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

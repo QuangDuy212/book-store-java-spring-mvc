@@ -240,7 +240,7 @@ public class BookService {
         order.setUser(user);
         order.setTotalPrice(totalPrice);
         order.setStatus("PENDING");
-        String currentTime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        String currentTime = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy").format(Calendar.getInstance().getTime());
         order.setCreatedAt(currentTime);
         this.orderRepository.save(order);
 

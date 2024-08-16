@@ -21,4 +21,8 @@ public class OrderDetailService {
         this.orderRepository = orderRepository;
     }
 
+    public List<OrderDetail> fetchOrderDetailsByOrder(Order order) {
+        return this.orderDetailRepository.findByOrder(order);
+    }
+
 }
