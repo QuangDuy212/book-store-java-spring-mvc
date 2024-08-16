@@ -178,7 +178,7 @@
                     <!-- welcome modal end -->
                     <!-- js -->
                     <script src="/adminRes/vendors/scripts/core.js"></script>
-                    <script src="/adminRes/vendors/scripts/script.min.js"></script>
+
                     <script src="/adminRes/vendors/scripts/process.js"></script>
                     <script src="/adminRes/vendors/scripts/layout-settings.js"></script>
                     <!-- Google Tag Manager (noscript) -->

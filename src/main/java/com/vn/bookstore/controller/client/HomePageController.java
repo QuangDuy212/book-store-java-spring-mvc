@@ -140,7 +140,7 @@ public class HomePageController {
         return "client/profile/show";
     }
 
-    @GetMapping("/books")
+    @GetMapping("/book")
     public String getBooksFilterPage(Model model, BookCriteriaDTO bookCriteriaDTO, HttpServletRequest request) {
         // paging variable
         int page = 1;

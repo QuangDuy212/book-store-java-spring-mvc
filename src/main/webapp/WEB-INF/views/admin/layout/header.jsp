@@ -11,38 +11,7 @@
                                 <div class="form-group mb-0">
                                     <i class="dw dw-search2 search-icon"></i>
                                     <input type="text" class="form-control search-input" placeholder="Search Here" />
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle no-arrow" href="#" role="button"
-                                            data-toggle="dropdown">
-                                            <i class="ion-arrow-down-c"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">From</label>
-                                                <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control form-control-sm form-control-line"
-                                                        type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">To</label>
-                                                <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control form-control-sm form-control-line"
-                                                        type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-12 col-md-2 col-form-label">Subject</label>
-                                                <div class="col-sm-12 col-md-10">
-                                                    <input class="form-control form-control-sm form-control-line"
-                                                        type="text" />
-                                                </div>
-                                            </div>
-                                            <div class="text-right">
-                                                <button class="btn btn-primary">Search</button>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </form>
                         </div>
@@ -63,91 +32,57 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <div class="notification-list mx-h-350 customscroll">
+                                        <c:if test="${empty sessionScope.listCart}">
+                                            <div style="width: 100%; padding: 10px;">
+                                                Không có sản phẩm nào
+                                            </div>
+                                        </c:if>
                                         <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="/adminRes/vendors/images/img.jpg" alt="" />
-                                                    <h3>John Doe</h3>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                        elit, sed...
-                                                    </p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="/adminRes/vendors/images/photo1.jpg" alt="" />
-                                                    <h3>Lea R. Frith</h3>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                        elit, sed...
-                                                    </p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="/adminRes/vendors/images/photo2.jpg" alt="" />
-                                                    <h3>Erik L. Richards</h3>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                        elit, sed...
-                                                    </p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="/adminRes/vendors/images/photo3.jpg" alt="" />
-                                                    <h3>John Doe</h3>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                        elit, sed...
-                                                    </p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="/adminRes/vendors/images/photo4.jpg" alt="" />
-                                                    <h3>Renee I. Hansen</h3>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                        elit, sed...
-                                                    </p>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="/adminRes/vendors/images/img.jpg" alt="" />
-                                                    <h3>Vicki M. Coleman</h3>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                        elit, sed...
-                                                    </p>
-                                                </a>
-                                            </li>
+                                            <c:if test="${not empty sessionScope.listCart}">
+                                                <c:forEach var="detail" items="${sessionScope.listCart}">
+                                                    <li>
+                                                        <a href="#">
+                                                            <img src="/images/book/${detail.book.image}" alt="" />
+                                                            <p>
+                                                                ${detail.book.mainText}
+                                                            </p>
+                                                        </a>
+                                                    </li>
+                                                </c:forEach>
+                                            </c:if>
                                         </ul>
+                                    </div>
+                                    <div style="border-top: 1px solid #ccc;">
+                                        <a href="/cart" class="btn btn-primary" style="margin-top: 12px;">Xem giỏ
+                                            hàng</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="user-info-dropdown">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                    <span class="user-icon">
-                                        <img src="/images/avatar/${sessionScope.avatar}" alt="" />
-                                    </span>
-                                    <span class="user-name" style="width: 100px;">${sessionScope.fullName}</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i>
-                                        Setting</a>
-                                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-                                    <form method="post" action="/logout">
-                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                        <button class="dropdown-item "><i class="dw dw-logout"></i>Log Out</button>
-                                    </form>
+                        <c:if test='${empty sessionScope.fullName}'>
+                            <div style="display: flex; justify-content: center; align-items: center;width: 150px;">
+                                <a href="/login">Đăng nhập</a>
+                            </div>
+                        </c:if>
+                        <c:if test='${not empty sessionScope.fullName}'>
+                            <div class="user-info-dropdown">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                        <span class="user-icon">
+                                            <img src="/images/avatar/${sessionScope.avatar}" alt=""
+                                                style="object-fit: cover; height: 100%; width: 100%;" />
+                                        </span>
+                                        <span class="user-name" style="width: 100px;">${sessionScope.fullName}</span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                        <a class="dropdown-item" href="/"><i class="dw dw-user1"></i>Client page</a>
+                                        <form method="post" action="/logout">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                            <button class="dropdown-item "><i class="dw dw-logout"></i>Log Out</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:if>
                     </div>
                 </div>

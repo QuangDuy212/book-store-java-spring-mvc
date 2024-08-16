@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <div class="left-side-bar">
+        <div class="left-side-bar ">
             <div class="brand-logo">
                 <a href="/">
                     <img src="/adminRes/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
@@ -24,7 +24,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/books" class="dropdown-toggle no-arrow">
+                            <a href="/book" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-table"></span><span class="mtext">Books</span>
                             </a>
                         </li>

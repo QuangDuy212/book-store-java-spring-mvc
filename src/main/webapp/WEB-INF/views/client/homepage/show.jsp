@@ -11,7 +11,7 @@
                     <title>Home | Book store</title>
 
                     <!-- Site favicon -->
-                    <link rel="apple-touch-icon" sizes="180x180" href="admin/vendors/images/apple-touch-icon.png" />
+                    <link rel="apple-touch-icon" sizes="180x180" href="/adminRes/vendors/images/apple-touch-icon.png" />
                     <link rel="icon" type="image/png" sizes="32x32" href="admin/vendors/images/favicon-32x32.png" />
                     <link rel="icon" type="image/png" sizes="16x16" href="admin/vendors/images/favicon-16x16.png" />
                     <link rel="stylesheet"
@@ -209,15 +209,10 @@
                     <!-- js -->
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                     <script src="/adminRes/vendors/scripts/core.js"></script>
-                    <script src="/adminRes/vendors/scripts/script.min.js"></script>
                     <script src="/adminRes/vendors/scripts/script.js"></script>
                     <script src="/adminRes/vendors/scripts/process.js"></script>
                     <script src="/adminRes/vendors/scripts/layout-settings.js"></script>
                     <script src="/adminRes/src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
-                    <script src="/adminRes/src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
-                    <script src="/adminRes/src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
-                    <script src="/adminRes/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-                    <script src="/adminRes/vendors/scripts/dashboard2.js"></script>
                     <!-- Google Tag Manager (noscript) -->
                     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
                             style="display: none; visibility: hidden"></iframe></noscript>

@@ -167,6 +167,10 @@ jQuery(document).ready(function () {
 			urlStr = `/${vars.pop()}`
 		} else if (vars.length == 5) {
 			urlStr = `/${vars[vars.length - 2]}/${vars[vars.length - 1]}`
+		} else if (vars.length == 6) {
+			urlStr = `/${vars[vars.length - 3]}/${vars[vars.length - 2]}`
+		} else if (vars.length == 7) {
+			urlStr = `/${vars[vars.length - 4]}/${vars[vars.length - 3]}`
 		}
 		$(this)
 			.find('a[href="' + urlStr + '"]')
@@ -176,10 +180,15 @@ jQuery(document).ready(function () {
 	$("#accordion-menu-user").each(function () {
 		var vars = window.location.href.split("/");
 		var urlStr;
+
 		if (vars.length == 4) {
-			urlStr = `/${vars.pop()}`
+			urlStr = `/${vars.pop().split("?")[0]}`
 		} else if (vars.length == 5) {
-			urlStr = `/${vars[vars.length - 2]}/${vars[vars.length - 1]}`
+			urlStr = `/${vars[vars.length - 2]}`
+		} else if (vars.length == 6) {
+			urlStr = `/${vars[vars.length - 3]}`
+		} else if (vars.length == 7) {
+			urlStr = `/${vars[vars.length - 4]}`
 		}
 		$(this)
 			.find('a[href="' + urlStr + '"]')
