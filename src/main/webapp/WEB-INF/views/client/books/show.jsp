@@ -196,17 +196,17 @@
                                             <div class="blog-pagination mb-30">
                                                 <div class="btn-toolbar justify-content-center mb-15">
                                                     <div class="btn-group">
-                                                        <a href="/books?page=${currentPage - 1}${queryString}" class="btn btn-outline-primary prev
+                                                        <a href="/book?page=${currentPage - 1}${queryString}" class="btn btn-outline-primary prev
                                                         ${1 eq currentPage ? 'disabled ' : ''}
                                                         "><i class="fa fa-angle-double-left"></i></a>
                                                         <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
-                                                            <a href="/books?page=${loop.index + 1}${queryString}" class=" ${(loop.index + 1) eq currentPage 
+                                                            <a href="/book?page=${loop.index + 1}${queryString}" class=" ${(loop.index + 1) eq currentPage 
                                                                 ? 'btn btn-primary current' : 
                                                                 'btn btn-outline-primary'}">
                                                                 ${loop.index + 1}
                                                             </a>
                                                         </c:forEach>
-                                                        <a href="/books?page=${loop.index + 1}${queryString}" class="btn btn-outline-primary next
+                                                        <a href="/book?page=${loop.index + 1}${queryString}" class="btn btn-outline-primary next
                                                         ${totalPages eq currentPage ? 'disabled ' : ''}
                                                         "><i class="fa fa-angle-double-right"></i></a>
                                                     </div>
@@ -238,16 +238,11 @@
                         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                     <script src="/adminRes/vendors/scripts/core.js"></script>
-                    <script src="/client/js/main.js"></script>
 
                     <script src="/adminRes/vendors/scripts/script.js"></script>
                     <script src="/adminRes/vendors/scripts/process.js"></script>
                     <script src="/adminRes/vendors/scripts/layout-settings.js"></script>
                     <script src="/adminRes/src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
-                    <script src="/adminRes/src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
-                    <script src="/adminRes/src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
-                    <script src="/adminRes/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-                    <script src="/adminRes/vendors/scripts/dashboard2.js"></script>
                     <!-- Google Tag Manager (noscript) -->
                     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
                             style="display: none; visibility: hidden"></iframe></noscript>
