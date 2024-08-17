@@ -57,6 +57,12 @@ public class HomePageController {
     }
 
     // Get Mapping
+
+    @GetMapping("/access-deny")
+    public String getAccessDenyPage(Model model, HttpServletRequest request) {
+        return "client/auth/access-deny";
+    }
+
     @GetMapping("/")
     public String getHomePage(Model model, BookCriteriaDTO bookCriteriaDTO, HttpServletRequest request) {
         // paging variable
