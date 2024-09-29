@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import com.vn.bookstore.domain.Order;
 import com.vn.bookstore.domain.OrderDetail;
 import com.vn.bookstore.domain.User;
 import com.vn.bookstore.domain.dto.BookCriteriaDTO;
+import com.vn.bookstore.domain.dto.CartDetailDTO;
 import com.vn.bookstore.repository.BookRepository;
 import com.vn.bookstore.repository.CartDetailRepository;
 import com.vn.bookstore.repository.CartRepository;
@@ -208,7 +210,9 @@ public class BookService {
                 }
 
                 List<CartDetail> cartDetailsByCart = this.cartDetailRepository.findByCart(cart);
-                session.setAttribute("listCart", cartDetailsByCart);
+                List<CartDetailDTO> res = cartDetailsByCart.stream().map(i -> this.convertToCartDetail(i))
+                        .collect(Collectors.toList());
+                // session.setAttribute("listCart", res);
             }
         }
     }
@@ -296,5 +300,26 @@ public class BookService {
                 this.cartDetailRepository.save(currentCartDetail);
             }
         }
+    }
+
+    public CartDetailDTO convertToCartDetail(CartDetail cart) {
+        CartDetailDTO res = new CartDetailDTO();
+        res.setId(cart.getId());
+        res.setPrice(cart.getPrice());
+        res.setQuantity(cart.getQuantity());
+        if (cart.getBook() != null) {
+            CartDetailDTO.Book book = new CartDetailDTO.Book();
+            book.setId(cart.getBook().getId());
+            book.setImage(cart.getBook().getImage());
+            book.setMainText(cart.getBook().getMainText());
+            res.setBook(book);
+        }
+        if (cart.getCart() != null) {
+            CartDetailDTO.Cart c = new CartDetailDTO.Cart();
+            c.setId(cart.getCart().getId());
+            c.setSum(cart.getCart().getSum());
+            res.setCart(c);
+        }
+        return res;
     }
 }

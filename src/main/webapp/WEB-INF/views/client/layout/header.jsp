@@ -26,11 +26,11 @@
                         </div>
                         <div class="user-notification">
                             <div class="dropdown">
-                                <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+                                <a class="dropdown-toggle no-arrow" href="/cart" role="button">
                                     <i class="icon-copy dw dw-notification"></i>
                                     <span class="badge notification-active"></span>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right">
+                                <!-- <div class="dropdown-menu dropdown-menu-right">
                                     <div class="notification-list mx-h-350 customscroll">
                                         <c:if test="${empty sessionScope.listCart}">
                                             <div style="width: 100%; padding: 10px;">
@@ -56,7 +56,7 @@
                                         <a href="/cart" class="btn btn-primary" style="margin-top: 12px;">Xem giỏ
                                             hàng</a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <c:if test='${empty sessionScope.fullName}'>
@@ -75,6 +75,11 @@
                                         <span class="user-name" style="width: 100px;">${sessionScope.fullName}</span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                        <c:if test='${sessionScope.role == "ADMIN"}'>
+                                            <a class="dropdown-item" href="/admin"><i
+                                                    class="icon-copy dw dw-user-11"></i>
+                                                Admin</a>
+                                        </c:if>
                                         <a class="dropdown-item" href="/profile"><i class="dw dw-user1"></i> Profile</a>
                                         <a class="dropdown-item" href="/order-history"><i class="dw dw-settings2"></i>
                                             Order history</a>

@@ -25,7 +25,11 @@
                             </div>
                         </div>
                         <div class="user-notification">
-                            <div class="dropdown">
+                            <a class="dropdown-toggle no-arrow" href="/cart" role="button" data-toggle="dropdown">
+                                <i class="icon-copy dw dw-notification"></i>
+                                <span class="badge notification-active"></span>
+                            </a>
+                            <!-- <div class="dropdown">
                                 <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
                                     <i class="icon-copy dw dw-notification"></i>
                                     <span class="badge notification-active"></span>
@@ -57,7 +61,7 @@
                                             hàng</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <c:if test='${empty sessionScope.fullName}'>
                             <div style="display: flex; justify-content: center; align-items: center;width: 150px;">
